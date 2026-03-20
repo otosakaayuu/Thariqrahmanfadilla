@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Intelligence — Crypto Analyst Division</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root{
+  --ink:#04060d;--ink2:#080c18;--ink3:#0d1225;--ink4:#131929;
+  --gold:#c9a84c;--gold2:#e8c97a;--gold-dim:rgba(201,168,76,.15);--gold-border:rgba(201,168,76,.22);
+  --em:#00c896;--cr:#e84545;--sky:#3b8fff;
+  --t:#dde2f0;--t2:#8a94b0;--t3:#4a5270;--ln:#1a2038;
+  --fd:'Cormorant Garamond',serif;--fs:'Syne',sans-serif;--fm:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--t);font-family:var(--fs);overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");opacity:.4;pointer-events:none;z-index:0}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(4,6,13,.95);backdrop-filter:blur(24px);border-bottom:1px solid var(--ln);display:flex;align-items:center;justify-content:space-between;padding:0 48px;z-index:190}
+.nb{display:flex;align-items:center;gap:14px}
+.nm{width:32px;height:32px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:16px;color:var(--gold);font-weight:600}
+.nn{font-family:var(--fm);font-size:11px;color:var(--t2);letter-spacing:2px;text-transform:uppercase}
+.nn strong{color:var(--t);display:block;letter-spacing:1px}
+.nl{display:flex;gap:36px}
+.nl a{font-family:var(--fm);font-size:10px;color:var(--t3);text-decoration:none;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
+.nl a:hover{color:var(--gold)}
+.ncta{background:var(--gold);color:#000;font-family:var(--fm);font-size:10px;font-weight:700;letter-spacing:2px;padding:9px 22px;border:none;cursor:pointer;text-transform:uppercase;transition:all .2s}
+.ncta:hover{background:var(--gold2);transform:translateY(-1px)}
+
+/* HERO */
+#hero{min-height:100vh;padding-top:64px;display:grid;grid-template-columns:1.1fr .9fr;position:relative;z-index:1;overflow:hidden}
+.hbg{position:absolute;bottom:-40px;right:-20px;font-family:var(--fd);font-size:260px;font-weight:700;color:rgba(201,168,76,.025);letter-spacing:-10px;line-height:1;pointer-events:none;user-select:none;white-space:nowrap}
+.hl{padding:80px 60px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--ln);position:relative;z-index:2}
+.hchip{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--gold-border);background:var(--gold-dim);padding:6px 16px;width:fit-content;margin-bottom:32px;font-family:var(--fm);font-size:9px;color:var(--gold);letter-spacing:2.5px;text-transform:uppercase}
+.ld{width:6px;height:6px;border-radius:50%;background:var(--em);animation:lp 1.8s ease-in-out infinite;flex-shrink:0}
+@keyframes lp{0%,100%{box-shadow:0 0 0 0 rgba(0,200,150,.5)}50%{box-shadow:0 0 0 5px rgba(0,200,150,0)}}
+.ht{font-family:var(--fd);font-size:clamp(60px,6.5vw,96px);line-height:.92;font-weight:600;letter-spacing:-1px;margin-bottom:28px}
+.ht em{color:var(--gold);font-style:italic}
+.ht .sk{-webkit-text-stroke:1px rgba(201,168,76,.45);color:transparent}
+.hb{font-family:var(--fm);font-size:12px;color:var(--t2);line-height:1.9;max-width:480px;margin-bottom:44px;border-left:2px solid var(--gold);padding-left:18px}
+.hkpi{display:flex;gap:0;margin-bottom:44px;border:1px solid var(--ln)}
+.kpi{padding:20px 28px;border-right:1px solid var(--ln);flex:1}
+.kpi:last-child{border-right:none}
+.kn{font-family:var(--fd);font-size:36px;color:var(--gold);font-weight:600;line-height:1}
+.kl{font-family:var(--fm);font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px;margin-top:5px}
+.ha{display:flex;gap:14px;align-items:center}
+.bp{background:var(--gold);color:#000;font-family:var(--fm);font-size:11px;font-weight:700;letter-spacing:1.5px;padding:14px 32px;border:none;cursor:pointer;text-transform:uppercase;transition:all .25s;text-decoration:none;display:inline-flex;align-items:center;gap:10px}
+.bp:hover{background:var(--gold2);box-shadow:0 12px 40px rgba(201,168,76,.25);transform:translateY(-2px)}
+.bo{background:transparent;color:var(--gold);font-family:var(--fm);font-size:11px;font-weight:700;letter-spacing:1.5px;padding:14px 32px;border:1px solid var(--gold-border);cursor:pointer;text-transform:uppercase;transition:all .25s;text-decoration:none;display:inline-flex;align-items:center;gap:10px}
+.bo:hover{background:var(--gold-dim);transform:translateY(-2px)}
+
+/* HERO RIGHT */
+.hr{background:var(--ink2);display:flex;flex-direction:column;justify-content:center;padding:60px 48px;position:relative;overflow:hidden}
+.hr::before{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;background:radial-gradient(circle,rgba(201,168,76,.07) 0%,transparent 70%);pointer-events:none}
+.plabel{font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:3px;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.plabel::before{content:'◈';color:var(--gold);font-size:10px}
+.rpv{display:flex;flex-direction:column;gap:1px;background:var(--ln)}
+.rpr{background:var(--ink3);padding:12px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:background .2s;position:relative;overflow:hidden}
+.rpr::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:var(--gold);transition:width .2s}
+.rpr:hover{background:var(--ink4)}.rpr:hover::before{width:2px}
+.ri{width:32px;height:32px;border:1px solid var(--ln);background:var(--ink4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px}
+.rinfo{flex:1;min-width:0}
+.rn{font-family:var(--fm);font-size:10px;color:var(--t);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.5px}
+.rm{font-family:var(--fm);font-size:9px;color:var(--t3);margin-top:2px}
+.rbadge{font-family:var(--fm);font-size:8px;letter-spacing:1px;padding:3px 8px;flex-shrink:0;text-transform:uppercase}
+.bn{background:rgba(0,200,150,.12);color:var(--em);border:1px solid rgba(0,200,150,.2)}
+.bp2{background:rgba(201,168,76,.1);color:var(--gold);border:1px solid var(--gold-border)}
+.bl{background:rgba(59,143,255,.1);color:var(--sky);border:1px solid rgba(59,143,255,.2)}
+
+/* SECTIONS */
+section{position:relative;z-index:1}
+.con{max-width:1360px;margin:0 auto;padding:0 48px}
+.sh{margin-bottom:64px}
+.sey{font-family:var(--fm);font-size:9px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.sey::after{content:'';height:1px;width:60px;background:var(--gold-border)}
+.sti{font-family:var(--fd);font-size:clamp(44px,4.5vw,68px);font-weight:500;line-height:.95;letter-spacing:-1px}
+.sti b{color:var(--gold);font-style:italic;font-weight:600}
+
+/* REPORT TYPES */
+#reports{padding:120px 0;background:var(--ink2);border-top:1px solid var(--ln)}
+.rtg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln)}
+.rtc{background:var(--ink);padding:40px 36px;cursor:pointer;position:relative;overflow:hidden;border-bottom:3px solid transparent;transition:all .3s}
+.rtc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transition:transform .3s;transform-origin:left}
+.rtc:hover{background:var(--ink3)}.rtc:hover::after{transform:scaleX(1)}
+.rtn{font-family:var(--fd);font-size:64px;color:rgba(201,168,76,.07);position:absolute;top:16px;right:20px;line-height:1;font-weight:700}
+.rticon{font-size:32px;margin-bottom:14px;display:block}
+.rtp{font-family:var(--fm);font-size:9px;color:var(--gold);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:8px}
+.rttl{font-family:var(--fd);font-size:26px;font-weight:600;color:var(--t);margin-bottom:10px;line-height:1.1}
+.rtd{font-size:13px;color:var(--t2);line-height:1.7;margin-bottom:16px}
+.rtcnt{font-family:var(--fm);font-size:10px;color:var(--t3);display:flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:1px}
+.rtcnt span{color:var(--gold);font-weight:700;font-size:13px}
+.rtcnt .avail{color:var(--em)}.rtcnt .soon{color:var(--t3)}
+.rtar{position:absolute;bottom:24px;right:24px;font-family:var(--fm);font-size:18px;color:var(--t3);transition:all .25s}
+.rtc:hover .rtar{color:var(--gold);transform:translateX(4px)}
+
+/* DRAWER */
+.dov{position:fixed;inset:0;background:rgba(4,6,13,.88);z-index:300;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(8px)}
+.dov.open{opacity:1;pointer-events:all}
+.drw{position:fixed;right:0;top:0;bottom:0;width:700px;background:var(--ink2);border-left:1px solid var(--ln);z-index:301;transform:translateX(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;overflow:hidden}
+.drw.open{transform:translateX(0)}
+.dh{padding:24px 32px;border-bottom:1px solid var(--ln);background:var(--ink3);display:flex;align-items:flex-start;gap:16px;flex-shrink:0}
+.dhicon{font-size:28px}
+.dhm{flex:1}
+.dhtype{font-family:var(--fm);font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
+.dhtitle{font-family:var(--fd);font-size:26px;font-weight:600;color:var(--t);line-height:1.1}
+.dhsub{font-family:var(--fm);font-size:10px;color:var(--t2);margin-top:6px}
+.dclo{background:transparent;border:1px solid var(--ln);color:var(--t2);width:36px;height:36px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.dclo:hover{border-color:var(--cr);color:var(--cr)}
+.dtb{padding:14px 32px;border-bottom:1px solid var(--ln);display:flex;align-items:center;gap:10px;flex-shrink:0;background:var(--ink2)}
+.dts{flex:1;background:var(--ink3);border:1px solid var(--ln);padding:8px 14px;font-family:var(--fm);font-size:11px;color:var(--t);outline:none;transition:border .2s}
+.dts:focus{border-color:var(--gold)}
+.dts::placeholder{color:var(--t3)}
+.dtf{background:var(--ink3);border:1px solid var(--ln);color:var(--t3);font-family:var(--fm);font-size:9px;padding:8px 12px;cursor:pointer;letter-spacing:1px;text-transform:uppercase;transition:all .2s;white-space:nowrap}
+.dtf.act,.dtf:hover{border-color:var(--gold);color:var(--gold)}
+.db{flex:1;overflow-y:auto;padding:0}
+.db::-webkit-scrollbar{width:4px}
+.db::-webkit-scrollbar-track{background:var(--ink2)}
+.db::-webkit-scrollbar-thumb{background:var(--ln)}
+.rtbl{width:100%;border-collapse:collapse}
+.rth th{font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:2px;text-transform:uppercase;padding:12px 24px;border-bottom:1px solid var(--ln);text-align:left;background:var(--ink3);position:sticky;top:0;z-index:1}
+.rtbd tr{border-bottom:1px solid var(--ln);transition:background .15s}
+.rtbd tr.has-file{cursor:pointer}.rtbd tr.has-file:hover{background:var(--ink3)}
+.rtbd tr.no-file{opacity:.55;cursor:default}
+.rtbd td{padding:14px 24px;vertical-align:middle}
+.tid{font-family:var(--fm);font-size:9px;color:var(--t3)}
+.tttl{font-family:var(--fs);font-size:13px;color:var(--t);font-weight:500;margin-bottom:3px}
+.ttags{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+.tg{font-family:var(--fm);font-size:8px;padding:2px 7px;letter-spacing:1px;text-transform:uppercase}
+.tgs{background:rgba(59,143,255,.08);color:var(--sky);border:1px solid rgba(59,143,255,.15)}
+.tgt{background:rgba(201,168,76,.08);color:var(--gold);border:1px solid var(--gold-border)}
+.tdt{font-family:var(--fm);font-size:10px;color:var(--t2)}
+.sb{font-family:var(--fm);font-size:8px;padding:4px 10px;letter-spacing:1.5px;text-transform:uppercase;display:inline-block}
+.sbn{background:rgba(0,200,150,.12);color:var(--em);border:1px solid rgba(0,200,150,.2)}
+.sbp{background:rgba(201,168,76,.1);color:var(--gold);border:1px solid var(--gold-border)}
+.sbf{background:rgba(232,69,69,.1);color:var(--cr);border:1px solid rgba(232,69,69,.2)}
+.sbs{background:rgba(74,82,112,.15);color:var(--t3);border:1px solid var(--ln)}
+/* Download btn */
+.tdl{background:transparent;border:1px solid var(--ln);color:var(--t3);font-family:var(--fm);font-size:9px;padding:7px 12px;cursor:pointer;letter-spacing:1px;text-transform:uppercase;transition:all .2s;white-space:nowrap;display:inline-flex;align-items:center;gap:5px;text-decoration:none}
+.tdl:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
+.tdl.disabled{opacity:.35;cursor:not-allowed;pointer-events:none}
+.dfoot{padding:16px 32px;border-top:1px solid var(--ln);background:var(--ink3);flex-shrink:0;display:flex;justify-content:space-between;align-items:center}
+.dfc{font-family:var(--fm);font-size:10px;color:var(--t3)}
+.dfc span{color:var(--gold)}.dfc .avail{color:var(--em)}
+.dfda{background:var(--gold);color:#000;font-family:var(--fm);font-size:10px;font-weight:700;letter-spacing:1.5px;padding:10px 24px;border:none;cursor:pointer;text-transform:uppercase;transition:all .2s}
+.dfda:hover{background:var(--gold2)}
+
+/* SKILLS */
+#skills{padding:120px 0;background:var(--ink);border-top:1px solid var(--ln)}
+.skw{display:grid;grid-template-columns:1fr 1fr;gap:80px}
+.ski{margin-bottom:28px}
+.skr{display:flex;justify-content:space-between;font-family:var(--fm);font-size:11px;color:var(--t2);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.skp{color:var(--gold)}
+.skt{height:3px;background:var(--ln);overflow:hidden}
+.skb{height:100%;background:linear-gradient(90deg,var(--gold),var(--em));width:0;transition:width 1.2s ease}
+
+/* TOOLS */
+#tools{padding:120px 0;background:var(--ink2);border-top:1px solid var(--ln)}
+.tg2{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln)}
+.tc{background:var(--ink);padding:28px 24px;transition:background .2s}
+.tc:hover{background:var(--ink3)}
+.tct{font-family:var(--fm);font-size:8px;letter-spacing:2px;padding:3px 8px;width:fit-content;margin-bottom:12px;text-transform:uppercase}
+.tct.pro{background:rgba(201,168,76,.1);color:var(--gold);border:1px solid var(--gold-border)}
+.tct.com{background:rgba(0,200,150,.08);color:var(--em);border:1px solid rgba(0,200,150,.15)}
+.tcn{font-family:var(--fd);font-size:22px;font-weight:600;color:var(--t);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
+.tcd{font-family:var(--fm);font-size:10px;color:var(--t3);line-height:1.7}
+.fps{display:flex;gap:10px;flex-wrap:wrap;margin-top:32px}
+.fp{font-family:var(--fm);font-size:10px;padding:6px 14px;border:1px solid var(--ln);color:var(--t3);background:var(--ink3);transition:all .2s;cursor:default}
+.fp:hover{border-color:var(--gold);color:var(--gold)}
+
+/* VALUE */
+#value{padding:120px 0;background:var(--ink);border-top:1px solid var(--ln)}
+.vg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln)}
+.vc{background:var(--ink2);padding:40px 36px;transition:background .25s;position:relative;overflow:hidden}
+.vc:hover{background:var(--ink3)}
+.vcbg{position:absolute;bottom:-10px;right:-10px;font-family:var(--fd);font-size:100px;color:rgba(201,168,76,.04);line-height:1;font-weight:700;pointer-events:none;user-select:none}
+.vci{font-size:28px;margin-bottom:18px}
+.vct{font-family:var(--fd);font-size:22px;font-weight:600;color:var(--t);margin-bottom:12px;line-height:1.2}
+.vcd{font-size:13px;color:var(--t2);line-height:1.75}
+
+/* CTA */
+#cta{padding:140px 0;background:var(--ink2);border-top:1px solid var(--ln);text-align:center;position:relative;overflow:hidden}
+#cta::before{content:'RESEARCH';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--fd);font-size:200px;font-weight:700;color:rgba(201,168,76,.023);letter-spacing:-5px;white-space:nowrap;pointer-events:none}
+.ctat{font-family:var(--fd);font-size:clamp(52px,6vw,84px);font-weight:500;color:var(--t);line-height:.95;margin-bottom:20px;letter-spacing:-1px;position:relative;z-index:1}
+.ctat em{color:var(--gold);font-style:italic}
+.ctas{font-family:var(--fm);font-size:12px;color:var(--t2);line-height:1.8;margin-bottom:52px;position:relative;z-index:1}
+.ctab{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+
+/* FOOTER */
+footer{padding:28px 48px;border-top:1px solid var(--ln);background:var(--ink);display:flex;justify-content:space-between;align-items:center}
+.fc{font-family:var(--fm);font-size:10px;color:var(--t3)}
+.fc span{color:var(--gold)}
+.fs{display:flex;align-items:center;gap:8px;font-family:var(--fm);font-size:10px;color:var(--t3)}
+.od{width:6px;height:6px;border-radius:50%;background:var(--em);animation:lp 2s infinite}
+
+/* FADE */
+.fu{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.fu.in{opacity:1;transform:translateY(0)}
+
+@media(max-width:960px){
+  #hero{grid-template-columns:1fr}.hr{display:none}
+  .hl{padding:60px 24px}
+  .rtg{grid-template-columns:1fr}
+  .drw{width:100%}
+  .tg2{grid-template-columns:repeat(2,1fr)}
+  .vg{grid-template-columns:1fr}
+  .skw{grid-template-columns:1fr;gap:40px}
+  .con{padding:0 24px}
+  header{padding:0 24px}.nl{display:none}
+  footer{flex-direction:column;gap:12px;padding:24px}
+  #reports,#skills,#tools,#value,#cta{padding:80px 0}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nb">
+    <div class="nm">RI</div>
+    <div class="nn"><strong>Research Intelligence</strong>Crypto Analyst Division</div>
+  </div>
+  <nav class="nl">
+    <a href="#reports">Reports</a>
+    <a href="#skills">Skills</a>
+    <a href="#tools">Tools</a>
+    <a href="#value">Value</a>
+    <a href="#cta">Profile</a>
+  </nav>
+  <button class="ncta" onclick="dlProfile()">↓ Download Profile</button>
+</header>
+
+<section id="hero">
+  <div class="hl fu">
+    <div class="hchip"><span class="ld"></span>Available · Exchange Research Division</div>
+    <h1 class="ht">On-Chain<br><em>Intelligence</em><br><span class="sk">Division</span></h1>
+    <p class="hb">Institutional-grade crypto research — from project listing due diligence to annual performance publications. Powered by pro-tier data infrastructure, Python pipelines, and 24/7 market surveillance.</p>
+    <div class="hkpi">
+      <div class="kpi"><div class="kn">24H</div><div class="kl">Market Coverage</div></div>
+      <div class="kpi"><div class="kn" id="kpi-cat">7</div><div class="kl">Report Categories</div></div>
+      <div class="kpi"><div class="kn" id="kpi-total">—</div><div class="kl">Reports Available</div></div>
+    </div>
+    <div class="ha">
+      <a href="#reports" class="bp">▸ Browse Reports</a>
+      <button class="bo" onclick="dlProfile()">↓ Download Profile</button>
+    </div>
+  </div>
+  <div class="hr">
+    <div class="plabel">Recent Publications</div>
+    <div class="rpv" id="rpv"></div>
+  </div>
+  <div class="hbg">RESEARCH</div>
+</section>
+
+<section id="reports">
+  <div class="con">
+    <div class="sh fu">
+      <div class="sey">Report Library</div>
+      <div class="sti">Browse All<br><b>Publications</b></div>
+    </div>
+    <div class="rtg fu" id="rtg"></div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="con">
+    <div class="sh fu">
+      <div class="sey">Capabilities</div>
+      <div class="sti">Core <b>Skill Stack</b></div>
+    </div>
+    <div class="skw">
+      <div id="skL"></div><div id="skR"></div>
+    </div>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="con">
+    <div class="sh fu">
+      <div class="sey">Arsenal</div>
+      <div class="sti">Pro Data <b>Tools</b></div>
+    </div>
+    <div class="tg2 fu" id="tg2"></div>
+    <div class="fps fu" id="fps"></div>
+  </div>
+</section>
+
+<section id="value">
+  <div class="con">
+    <div class="sh fu">
+      <div class="sey">Differentiation</div>
+      <div class="sti">Why <b>Choose Me</b></div>
+    </div>
+    <div class="vg fu" id="vg"></div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="con">
+    <div class="ctat fu">Download My<br><em>Full Profile</em></div>
+    <p class="ctas fu">Complete research analyst profile — skills, tools, services &amp; sample report frameworks.<br>One PDF. Ready to share with any exchange or client.</p>
+    <div class="ctab fu">
+      <button class="bp" onclick="dlProfile()">↓ Download PDF Profile</button>
+      <button class="bo" onclick="window.print()">⎙ Print Page</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fc">© 2025 <span>Research Intelligence</span> · Crypto Analyst Division</div>
+  <div class="fs"><span class="od"></span>Available for Hire · Crypto Market 24/7</div>
+</footer>
+
+<!-- DRAWER -->
+<div class="dov" id="dov" onclick="closeDrawer()"></div>
+<div class="drw" id="drw">
+  <div class="dh">
+    <div class="dhicon" id="dico">📋</div>
+    <div class="dhm">
+      <div class="dhtype" id="dtp">Report Category</div>
+      <div class="dhtitle" id="dtl">Report Library</div>
+      <div class="dhsub" id="dsb">Loading...</div>
+    </div>
+    <button class="dclo" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="dtb">
+    <input class="dts" id="dsearch" placeholder="Search by title, ID, tags..." oninput="filterR()">
+    <button class="dtf act" data-f="all" onclick="setF(this)">All</button>
+    <button class="dtf" data-f="available" onclick="setF(this)">Available</button>
+    <button class="dtf" data-f="soon" onclick="setF(this)">Coming Soon</button>
+  </div>
+  <div class="db">
+    <table class="rtbl">
+      <thead class="rth"><tr>
+        <th style="width:75px">ID</th>
+        <th>Report Title</th>
+        <th style="width:90px">Date</th>
+        <th style="width:85px">Status</th>
+        <th style="width:85px">Action</th>
+      </tr></thead>
+      <tbody class="rtbd" id="dtbl"></tbody>
+    </table>
+  </div>
+  <div class="dfoot">
+    <div class="dfc">
+      <span id="dfc-avail" class="avail">0</span> available &nbsp;·&nbsp;
+      <span id="dfc-soon">0</span> coming soon
+    </div>
+    <button class="dfda" id="dlAllBtn">↓ Download All PDFs</button>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   📁  KONFIGURASI REPORTS — EDIT DI SINI
+   
+   Cara pakai:
+   1. Upload PDF kamu ke folder yang sesuai
+      Contoh: reports/A. Project Listing/ENA_Listing.pdf
+   2. Tambahkan entry di array reports dengan:
+      - id      : kode unik (misal "PL-001")
+      - title   : judul laporan
+      - filename: nama file PDF persis (null = coming soon)
+      - date    : tanggal publish
+      - status  : "New" | "Featured" | "Published"
+      - tags    : array label
+   3. Save index.html → push ke GitHub
+═══════════════════════════════════════════════════════════ */
+const REPORTS_CONFIG = [
+  {
+    id: 'listing',
+    icon: '📋',
+    period: 'On-Demand',
+    title: 'Project Listing Report',
+    desc: 'Deep-dive fundamental analysis for new token listings — tokenomics, team, vesting, VC backing, competitive moat, and risk scoring.',
+    folder: 'reports/A. Project Listing/',
+    reports: [
+      // Contoh entry (hapus // untuk aktifkan):
+      // { id:'PL-001', title:'Ethena (ENA) — Project Listing Due Diligence', filename:'ENA_Listing.pdf', date:'Mar 2024', status:'New', tags:['RWA','Due Diligence'] },
+      // { id:'PL-002', title:'Jupiter (JUP) — Project Listing Due Diligence', filename:null, date:'Coming Soon', status:'Soon', tags:['DEX','Due Diligence'] },
+    ]
+  },
+  {
+    id: 'performance',
+    icon: '📊',
+    period: 'On-Demand',
+    title: 'Project Performance Report',
+    desc: 'Post-listing performance tracking with price action, volume analysis, liquidity depth, and holder behavior.',
+    folder: 'reports/B. Project Performance/',
+    reports: [
+      // { id:'PP-001', title:'Bitcoin (BTC) — Performance & On-Chain Analysis', filename:'BTC_Performance.pdf', date:'Apr 2024', status:'Published', tags:['Layer 1','Performance'] },
+    ]
+  },
+  {
+    id: 'weekly',
+    icon: '📰',
+    period: 'Weekly',
+    title: 'Weekly Market Report',
+    desc: '7-day market digest: macro catalysts, top movers, DeFi TVL shifts, and curated alpha from 24/7 news monitoring.',
+    folder: 'reports/C. Weekly Report/',
+    reports: [
+      // { id:'WR-2024-001', title:'Week 1 — Jan Week 1 · Market Intelligence Digest', filename:'WR_2024_W01.pdf', date:'Jan 7, 2024', status:'Published', tags:['Weekly Digest','Market Intel'] },
+    ]
+  },
+  {
+    id: 'monthly',
+    icon: '📅',
+    period: 'Monthly',
+    title: 'Monthly Intelligence Report',
+    desc: 'Comprehensive monthly overview: macro correlation, sector rotation, portfolio performance attribution.',
+    folder: 'reports/D. Monthly Report/',
+    reports: [
+      // { id:'MR-2024-01', title:'January 2024 — Monthly Intelligence & Market Report', filename:'MR_2024_January.pdf', date:'Jan 31, 2024', status:'Published', tags:['Monthly','Macro Analysis'] },
+    ]
+  },
+  {
+    id: 'quarterly',
+    icon: '📈',
+    period: 'Quarterly',
+    title: 'Quarterly Research Report',
+    desc: '90-day strategic review: VC deal flow, protocol revenues, institutional on-chain positioning shifts.',
+    folder: 'reports/E. Quarterly Report/',
+    reports: [
+      // { id:'QR-01', title:'Q1 2024 — Halving Cycle Positioning & ETF Inflows', filename:'QR_2024_Q1.pdf', date:'Q1 2024 Summary', status:'Published', tags:['Quarterly','Strategic Research'] },
+    ]
+  },
+  {
+    id: 'yearly',
+    icon: '🏆',
+    period: 'Annual',
+    title: 'Yearly Market Report',
+    desc: 'Full-year state-of-the-market publication — suitable for investor decks, regulatory submissions, and strategic planning.',
+    folder: 'reports/F. Yearly Report/',
+    reports: [
+      // { id:'YR-2024', title:'2024 Annual Report — Halving, ETF Approval & Institutional Adoption Era', filename:'YR_2024_Annual.pdf', date:'Dec 31, 2024', status:'New', tags:['Annual','Institutional'] },
+    ]
+  },
+  {
+    id: 'random',
+    icon: '📂',
+    period: 'Various',
+    title: 'Random Work Report',
+    desc: 'Miscellaneous research, special projects, one-off analyses, and commissioned deep-dives outside standard report categories.',
+    folder: 'reports/Random Work Report/',
+    reports: [
+      // { id:'RW-001', title:'Special Research — Custom Project Analysis', filename:'RW_001_Special.pdf', date:'Mar 2024', status:'New', tags:['Special','Research'] },
+    ]
+  },
+];
+/* ═══════════════════════════════════════════════════════════ */
+
+const SKILLS_L=[
+  ['Python · Pandas & NumPy',95],['Plotly Visualization',92],
+  ['SQL / MySQL Databases',90],['On-Chain Analysis',94],['API Data Collection',88]
+];
+const SKILLS_R=[
+  ['Market Intelligence · 24/7',96],['Copywriting & Marketing Ads',91],
+  ['Accounting & Finance Degree',89],['Pixel Mapping & Data Extraction',83],
+  ['Institutional Flow Analysis',87]
+];
+const TOOLS=[
+  {n:'Messari',t:'pro',d:'Token fundamentals, protocol revenue, governance activity & institutional-grade research reports.'},
+  {n:'Kaiko',t:'pro',d:'Professional order book data, market microstructure, trade surveillance & liquidity analytics.'},
+  {n:'Delphi Digital',t:'pro',d:'Top-tier macro crypto research, ecosystem mapping & thematic investment frameworks.'},
+  {n:'CryptoQuant',t:'pro',d:'Exchange on-chain flows, miner behavior, derivatives positioning & real-time market health.'},
+  {n:'Glassnode',t:'pro',d:'NUPL, SOPR, MVRV, LTH/STH supply distribution & holder cohort behavior analytics.'},
+  {n:'X Platform',t:'com',d:'Real-time whale, VC & dev signal aggregation — 24/7 market sentiment monitoring.'},
+  {n:'VC Tracker',t:'com',d:'a16z, Multicoin, Paradigm, Binance Labs & 50+ fund flows aggregated into one chart.'},
+  {n:'Python + SQL',t:'com',d:'Custom data pipelines: API collection, PlotDesigner pixel mapping & MySQL databases.'},
+];
+const FREE=['CoinGecko API','DefiLlama','Token Terminal','Nansen Community','Dune Analytics','Arkham Intelligence','TradingView','Lookonchain','The Block','Coinglass','AlternativeMe','CoinMarketCap'];
+const VALUES=[
+  {i:'⚡',t:'Crypto Never Sleeps, Neither Do I',d:'24/7 market monitoring across news aggregators, X platform feeds, and on-chain alerts. Real-time intelligence — not a 9-to-5 summary.',n:'01'},
+  {i:'🔬',t:'Institutional Tools, Not Retail Guesses',d:'Messari, Kaiko, Delphi Digital, CryptoQuant & Glassnode — the same toolkit used by top hedge funds. Every report is grounded in premium, verified data.',n:'02'},
+  {i:'📡',t:'All Smart Money in One Chart',d:'Aggregate fund movements from a16z, Multicoin, Paradigm, Binance Labs & 50+ major VCs into unified Plotly visualizations.',n:'03'},
+  {i:'💻',t:'Code-Powered Research Pipeline',d:'Python (Pandas, NumPy, Plotly) + MySQL for automated data collection via APIs and pixel-mapped data extraction. I build the pipeline, not just read the output.',n:'04'},
+  {i:'📣',t:'Research That Sells',d:'Rare combo: ex-Marketing Specialist in ads & copywriting + Accounting/Finance degree. I write research that decision-makers actually read, act on, and share.',n:'05'},
+  {i:'🎯',t:'Exchange-Ready Deliverables',d:'Every report structured for crypto exchange workflows: listing due diligence, regulatory documentation, investor-facing performance decks & annual publications.',n:'06'},
+];
+
+/* ── INIT KPI ── */
+(function initKPI(){
+  let total=0;
+  REPORTS_CONFIG.forEach(cat=>{ cat.reports.forEach(r=>{ if(r.filename) total++; }); });
+  document.getElementById('kpi-total').textContent = total > 0 ? total+'+' : '—';
+  document.getElementById('kpi-cat').textContent = REPORTS_CONFIG.length;
+})();
+
+/* ── HERO PREVIEWS — ambil 5 report terakhir yang ada file ── */
+(function buildPreviews(){
+  const all=[];
+  REPORTS_CONFIG.forEach(cat=>{
+    cat.reports.forEach(r=>{
+      if(r.filename) all.push({...r, catIcon:cat.icon, catId:cat.id, folder:cat.folder, period:cat.period});
+    });
+  });
+  const prev = all.slice(-5).reverse();
+  if(prev.length===0){
+    document.getElementById('rpv').innerHTML=`
+      <div style="padding:28px 20px;font-family:var(--fm);font-size:10px;color:var(--t3);text-align:center;line-height:1.8">
+        Tambahkan PDF kamu ke konfigurasi<br>untuk menampilkan preview di sini.
+      </div>`;
+    return;
+  }
+  const badges=['bn','bp2','bl','bn','bp2'];
+  document.getElementById('rpv').innerHTML=prev.map((r,i)=>`
+    <div class="rpr" onclick="openDrawerById('${r.catId}')">
+      <div class="ri">${r.catIcon}</div>
+      <div class="rinfo">
+        <div class="rn">${r.title}</div>
+        <div class="rm">${r.period} · ${r.date}</div>
+      </div>
+      <div class="rbadge ${badges[i%5]}">${r.status}</div>
+    </div>
+  `).join('');
+})();
+
+/* ── REPORT GRID ── */
+document.getElementById('rtg').innerHTML=REPORTS_CONFIG.map((rt,i)=>{
+  const total=rt.reports.length;
+  const avail=rt.reports.filter(r=>r.filename).length;
+  const cntHtml = total===0
+    ? `<span class="soon">No reports yet</span>`
+    : `<span class="avail">${avail}</span> available &nbsp;·&nbsp; <span class="soon">${total-avail} soon</span>`;
+  return `
+  <div class="rtc fu" onclick="openDrawer(${i})">
+    <div class="rtn">${String(i+1).padStart(2,'0')}</div>
+    <span class="rticon">${rt.icon}</span>
+    <div class="rtp">${rt.period}</div>
+    <div class="rttl">${rt.title}</div>
+    <div class="rtd">${rt.desc}</div>
+    <div class="rtcnt">${cntHtml}</div>
+    <div class="rtar">→</div>
+  </div>`;
+}).join('');
+
+/* ── SKILLS ── */
+['skL','skR'].forEach((id,si)=>{
+  const arr=si===0?SKILLS_L:SKILLS_R;
+  document.getElementById(id).innerHTML=arr.map(([n,p])=>`
+    <div class="ski fu">
+      <div class="skr"><span>${n}</span><span class="skp">${p}%</span></div>
+      <div class="skt"><div class="skb" data-w="${p}%"></div></div>
+    </div>
+  `).join('');
+});
+
+/* ── TOOLS ── */
+document.getElementById('tg2').innerHTML=TOOLS.map(t=>`
+  <div class="tc fu">
+    <div class="tct ${t.t}">${t.t==='pro'?'Pro License':'Community'}</div>
+    <div class="tcn">${t.n}</div>
+    <div class="tcd">${t.d}</div>
+  </div>`).join('');
+document.getElementById('fps').innerHTML=FREE.map(t=>`<div class="fp">${t}</div>`).join('');
+
+/* ── VALUE ── */
+document.getElementById('vg').innerHTML=VALUES.map(v=>`
+  <div class="vc fu">
+    <div class="vcbg">${v.n}</div>
+    <div class="vci">${v.i}</div>
+    <div class="vct">${v.t}</div>
+    <div class="vcd">${v.d}</div>
+  </div>`).join('');
+
+/* ── INTERSECTION OBSERVER ── */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      e.target.querySelectorAll('.skb').forEach(b=>{b.style.width=b.dataset.w});
+    }
+  });
+},{threshold:.1});
+document.querySelectorAll('.fu').forEach(el=>io.observe(el));
+
+/* ── DRAWER ── */
+let curType=null, curFilter='all', allReps=[];
+
+function openDrawerById(id){ openDrawer(REPORTS_CONFIG.findIndex(r=>r.id===id)); }
+
+function openDrawer(idx){
+  const rt=REPORTS_CONFIG[idx];
+  curType=rt; allReps=[...rt.reports]; curFilter='all';
+  document.getElementById('dico').textContent=rt.icon;
+  document.getElementById('dtp').textContent=rt.period+' Report';
+  document.getElementById('dtl').textContent=rt.title;
+  const avail=rt.reports.filter(r=>r.filename).length;
+  document.getElementById('dsb').textContent=
+    rt.reports.length===0
+      ? 'Belum ada laporan — tambahkan PDF ke konfigurasi'
+      : `${avail} tersedia · ${rt.reports.length-avail} coming soon`;
+  document.getElementById('dsearch').value='';
+  document.querySelectorAll('.dtf').forEach(b=>b.classList.remove('act'));
+  document.querySelector('[data-f="all"]').classList.add('act');
+  updateDlBtn(rt);
+  renderTbl(rt.reports);
+  document.getElementById('dov').classList.add('open');
+  document.getElementById('drw').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeDrawer(){
+  document.getElementById('dov').classList.remove('open');
+  document.getElementById('drw').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function updateDlBtn(rt){
+  const avail=rt.reports.filter(r=>r.filename);
+  const btn=document.getElementById('dlAllBtn');
+  btn.textContent=avail.length>0 ? `↓ Buka Semua (${avail.length}) PDF` : '— Belum Ada PDF';
+  btn.disabled=avail.length===0;
+}
+
+function renderTbl(reps){
+  const sc={New:'sbn',Featured:'sbf',Published:'sbp',Soon:'sbs'};
+  document.getElementById('dtbl').innerHTML = reps.length===0
+    ? `<tr><td colspan="5" style="text-align:center;padding:40px;font-family:var(--fm);font-size:11px;color:var(--t3)">
+        Tidak ada laporan ditemukan.<br><br>
+        <span style="font-size:10px;color:var(--t3)">Tambahkan PDF di konfigurasi REPORTS_CONFIG dalam index.html</span>
+       </td></tr>`
+    : reps.map(r=>{
+        const hasFile=!!r.filename;
+        const dlBtn = hasFile
+          ? `<a class="tdl" href="${encodeURI(curType.folder+r.filename)}" target="_blank" download="${r.filename}" onclick="event.stopPropagation()">↓ PDF</a>`
+          : `<span class="tdl disabled">— Soon</span>`;
+        const statusKey = r.status==='Soon'?'Soon':(r.status||'Published');
+        return `
+        <tr class="${hasFile?'has-file':'no-file'}" ${hasFile?`onclick="openPDF('${encodeURI(curType.folder+r.filename)}')"`:''}>
+          <td><span class="tid">${r.id}</span></td>
+          <td>
+            <div class="tttl">${r.title}</div>
+            <div class="ttags">${(r.tags||[]).map(t=>`<span class="tg tgs">${t}</span>`).join('')}</div>
+          </td>
+          <td><span class="tdt">${r.date}</span></td>
+          <td><span class="sb ${sc[statusKey]||'sbp'}">${r.status}</span></td>
+          <td>${dlBtn}</td>
+        </tr>`;
+      }).join('');
+
+  const avail=reps.filter(r=>r.filename).length;
+  document.getElementById('dfc-avail').textContent=avail;
+  document.getElementById('dfc-soon').textContent=reps.length-avail;
+}
+
+function openPDF(path){ window.open(path,'_blank'); }
+
+function filterR(){
+  const q=document.getElementById('dsearch').value.toLowerCase();
+  let f=[...allReps];
+  if(curFilter==='available') f=f.filter(r=>r.filename);
+  else if(curFilter==='soon') f=f.filter(r=>!r.filename);
+  if(q) f=f.filter(r=>r.title.toLowerCase().includes(q)||r.id.toLowerCase().includes(q)||(r.tags||[]).join(' ').toLowerCase().includes(q));
+  renderTbl(f);
+}
+
+function setF(btn){
+  curFilter=btn.dataset.f;
+  document.querySelectorAll('.dtf').forEach(b=>b.classList.remove('act'));
+  btn.classList.add('act');
+  filterR();
+}
+
+document.getElementById('dlAllBtn').onclick=function(){
+  if(!curType) return;
+  const avail=curType.reports.filter(r=>r.filename);
+  avail.forEach((r,i)=>{
+    setTimeout(()=>{
+      const a=document.createElement('a');
+      a.href=encodeURI(curType.folder+r.filename);
+      a.download=r.filename;
+      a.target='_blank';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }, i*400);
+  });
+};
+
+/* ── PROFILE PDF (jsPDF) ── */
+function dlProfile(){
+  const {jsPDF}=window.jspdf;
+  const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+  const W=210,H=297,M=22;
+  doc.setFillColor(4,6,13);doc.rect(0,0,W,H,'F');
+  doc.setFillColor(201,168,76);doc.rect(0,0,W,3,'F');
+  doc.setFillColor(201,168,76);doc.rect(0,0,3,H,'F');
+  doc.setFillColor(8,12,24);doc.rect(0,3,W,56,'F');
+  doc.setDrawColor(26,32,56);doc.setLineWidth(.4);doc.line(0,59,W,59);
+  doc.setFont('helvetica','bold');doc.setFontSize(34);doc.setTextColor(201,168,76);
+  doc.text('CRYPTO RESEARCH',M+2,23);
+  doc.setTextColor(221,226,240);doc.setFontSize(28);
+  doc.text('ANALYST PROFILE',M+2,37);
+  doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(138,148,176);
+  doc.text('Research Intelligence Division  ·  Available for Crypto Exchange Partnerships',M+2,48);
+  doc.setFillColor(0,200,150);doc.circle(M+2,54,2.5,'F');
+  doc.setFontSize(8.5);doc.setTextColor(0,200,150);
+  doc.text('Available for Hire · 24/7 Market Coverage · Institutional-Grade Research',M+8,55.5);
+  let y=70;
+  const addSec=(title,items)=>{
+    if(y>H-40){doc.addPage();doc.setFillColor(4,6,13);doc.rect(0,0,W,H,'F');y=20;}
+    doc.setFillColor(201,168,76);doc.rect(M,y,3,5,'F');
+    doc.setFont('helvetica','bold');doc.setFontSize(11);doc.setTextColor(201,168,76);
+    doc.text(title,M+7,y+4);
+    doc.setDrawColor(26,32,56);doc.line(M+7,y+7,W-M,y+7);
+    y+=14;
+    items.forEach(item=>{
+      if(y>H-20){doc.addPage();doc.setFillColor(4,6,13);doc.rect(0,0,W,H,'F');y=20;}
+      doc.setFillColor(11,15,26);doc.setDrawColor(20,26,40);
+      doc.roundedRect(M+2,y-3,W-M*2-4,10,1,1,'FD');
+      doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(170,178,200);
+      doc.setTextColor(201,168,76);doc.text('▸',M+6,y+3.5);
+      doc.setTextColor(170,178,200);doc.text(item,M+13,y+3.5);
+      y+=12;
+    });
+    y+=8;
+  };
+  addSec('REPORT SERVICES',[
+    'Project Listing Report — Tokenomics, team verification, VC analysis & risk scoring (On-Demand)',
+    'Project Performance Report — Post-listing analytics, liquidity & holder behavior (On-Demand)',
+    'Weekly Market Report — 7-day digest, top movers, DeFi intel & alpha signals (Weekly)',
+    'Monthly Intelligence Report — Macro correlation, sector rotation & fund flows (Monthly)',
+    'Quarterly Research Report — VC deal flow, protocol revenue & strategic outlook (Quarterly)',
+    'Yearly Market Report — Full cycle analysis, institutional tracker & annual publication (Annual)',
+    'Random Work Report — Special projects, commissioned research & custom deep-dives (Various)',
+  ]);
+  addSec('CORE SKILL STACK',[
+    'Python (Pandas, NumPy, Plotly) — Data pipelines, charting, visualization & automation',
+    'SQL / MySQL — Database architecture, query optimization & structured data collection',
+    'On-Chain Analysis — Glassnode & CryptoQuant: NUPL, SOPR, MVRV, LTH/STH cohorts',
+    'API Data Collection — Automated ingestion pipelines from 20+ premium data sources',
+    'Pixel Mapping — PlotDesigner screenshot digitization & chart data extraction',
+    'Copywriting & Marketing Ads — Ex-Marketing Specialist in digital & performance ads',
+    'Accounting & Finance Degree — Quantitative modeling & fundamental analysis foundation',
+  ]);
+  addSec('PRO DATA TOOLS',[
+    'Messari Pro — Token fundamentals, protocol revenue, governance & institutional reports',
+    'Kaiko Pro — Order book depth, liquidity analytics, microstructure & trade surveillance',
+    'Delphi Digital Pro — Macro thesis, ecosystem mapping & thematic investment frameworks',
+    'CryptoQuant Pro — Exchange flows, miner behavior, open interest & derivatives data',
+    'Glassnode Pro — NUPL, SOPR, MVRV Z-Score, supply distribution & holder cohort analytics',
+    'Community Stack — Dune Analytics, DefiLlama, Token Terminal, TradingView, Arkham Intelligence',
+  ]);
+  doc.setFillColor(201,168,76);doc.rect(0,H-4,W,4,'F');
+  doc.setFont('helvetica','bold');doc.setFontSize(8);doc.setTextColor(100,110,140);
+  doc.text('Research Intelligence · Crypto Analyst Division · Available for Exchange Partnership',W/2,H-7,{align:'center'});
+  doc.save('ResearchIntelligence_AnalystProfile.pdf');
+}
+</script>
+</body>
+</html>
