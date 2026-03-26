@@ -737,74 +737,17 @@ function setF(btn){
 document.getElementById('dlAllBtn').onclick=function(){dlProfile()};
 
 /* ══════════════════════
-   PROFILE PDF
+   PROFILE PDF — opens real file
 ══════════════════════ */
 function dlProfile(){
-  const{jsPDF}=window.jspdf;
-  const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
-  const W=210,H=297,M=22;
-  doc.setFillColor(4,6,13);doc.rect(0,0,W,H,'F');
-  doc.setFillColor(201,168,76);doc.rect(0,0,W,3,'F');
-  doc.setFillColor(201,168,76);doc.rect(0,0,3,H,'F');
-  doc.setFillColor(8,12,24);doc.rect(0,3,W,56,'F');
-  doc.setDrawColor(26,32,56);doc.setLineWidth(.4);doc.line(0,59,W,59);
-  doc.setFont('helvetica','bold');doc.setFontSize(34);doc.setTextColor(201,168,76);
-  doc.text('CRYPTO RESEARCH',M+2,23);
-  doc.setTextColor(221,226,240);doc.setFontSize(28);doc.text('ANALYST PROFILE',M+2,37);
-  doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(138,148,176);
-  doc.text('Research Intelligence Division  ·  Thariqrahmanfadilla',M+2,48);
-  doc.setFillColor(0,200,150);doc.circle(M+2,54,2.5,'F');
-  doc.setFontSize(8.5);doc.setTextColor(0,200,150);
-  doc.text('Available for Hire · 24/7 Market Coverage · Institutional-Grade Research',M+8,55.5);
-  let y=70;
-  const addSec=(title,items)=>{
-    if(y>H-40){doc.addPage();doc.setFillColor(4,6,13);doc.rect(0,0,W,H,'F');y=20;}
-    doc.setFillColor(201,168,76);doc.rect(M,y,3,5,'F');
-    doc.setFont('helvetica','bold');doc.setFontSize(11);doc.setTextColor(201,168,76);
-    doc.text(title,M+7,y+4);
-    doc.setDrawColor(26,32,56);doc.line(M+7,y+7,W-M,y+7);
-    y+=14;
-    items.forEach(item=>{
-      if(y>H-20){doc.addPage();doc.setFillColor(4,6,13);doc.rect(0,0,W,H,'F');y=20;}
-      doc.setFillColor(11,15,26);doc.setDrawColor(20,26,40);
-      doc.roundedRect(M+2,y-3,W-M*2-4,10,1,1,'FD');
-      doc.setFont('helvetica','normal');doc.setFontSize(8.5);
-      doc.setTextColor(201,168,76);doc.text('▸',M+6,y+3.5);
-      doc.setTextColor(170,178,200);doc.text(item,M+13,y+3.5);
-      y+=12;
-    });
-    y+=8;
-  };
-  addSec('REPORT SERVICES',[
-    'A. Project Listing Report — Tokenomics, team verification, VC analysis & risk scoring',
-    'B. Project Performance Report — Post-listing analytics, liquidity & holder behavior',
-    'C. Weekly Market Report — 7-day digest, top movers, DeFi intel & alpha signals',
-    'D. Monthly Intelligence Report — Macro correlation, sector rotation & fund flows',
-    'E. Quarterly Research Report — VC deal flow, protocol revenue & strategic outlook',
-    'F. Yearly Market Report — Full cycle analysis, institutional tracker & publication',
-    'G. Random Work Report — Ad-hoc research, thematic deep-dives & special topics',
-  ]);
-  addSec('CORE SKILL STACK',[
-    'Python (Pandas, NumPy, Plotly) — Data pipelines, charting & automation',
-    'SQL / MySQL — Database architecture, query optimization & data collection',
-    'On-Chain Analysis — Glassnode & CryptoQuant: NUPL, SOPR, MVRV, LTH/STH',
-    'API Data Collection — Automated ingestion from 20+ premium data sources',
-    'Pixel Mapping — PlotDesigner screenshot digitization & chart data extraction',
-    'Copywriting & Marketing Ads — Ex-Marketing Specialist (digital & performance)',
-    'Accounting & Finance Degree — Quantitative modeling & fundamental analysis',
-  ]);
-  addSec('PRO DATA TOOLS',[
-    'Messari Pro — Token fundamentals, protocol revenue & institutional reports',
-    'Kaiko Pro — Order book depth, liquidity analytics & trade surveillance',
-    'Delphi Digital Pro — Macro thesis, ecosystem mapping & investment frameworks',
-    'CryptoQuant Pro — Exchange flows, miner behavior & derivatives positioning',
-    'Glassnode Pro — NUPL, SOPR, MVRV, supply distribution & holder analytics',
-    'Community: Dune Analytics, DefiLlama, Token Terminal, TradingView, Arkham',
-  ]);
-  doc.setFillColor(201,168,76);doc.rect(0,H-4,W,4,'F');
-  doc.setFont('helvetica','bold');doc.setFontSize(8);doc.setTextColor(100,110,140);
-  doc.text('Research Intelligence · Thariqrahmanfadilla · Available for Exchange Partnership',W/2,H-7,{align:'center'});
-  doc.save('ResearchIntelligence_AnalystProfile.pdf');
+  // Opens the real CV & How I Work PDF from GitHub
+  const a = document.createElement('a');
+  a.href = 'CV_and_How_i_Work.pdf';
+  a.download = 'ThariqRahmanFadillah_CV_and_How_I_Work.pdf';
+  a.target = '_blank';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 }
 </script>
 </body>
