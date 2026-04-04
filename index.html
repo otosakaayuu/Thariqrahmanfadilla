@@ -6,7 +6,7 @@
 <title>Research Intelligence — Crypto Growth & Analyst Division</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 <style>
 :root{
   --ink:#04060d;--ink2:#080c18;--ink3:#0d1225;--ink4:#131929;
@@ -30,7 +30,7 @@ header{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(4,6,13,.9
 .nl{display:flex;gap:36px}
 .nl a{font-family:var(--fm);font-size:10px;color:var(--t3);text-decoration:none;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
 .nl a:hover{color:var(--gold)}
-.ncta{background:var(--gold);color:#000;font-family:var(--fm);font-size:10px;font-weight:700;letter-spacing:2px;padding:9px 22px;border:none;cursor:pointer;text-transform:uppercase;transition:all .2s}
+.ncta{background:var(--gold);color:#000;font-family:var(--fm);font-size:10px;font-weight:700;letter-spacing:2px;padding:9px 22px;border:none;cursor:pointer;text-transform:uppercase;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center}
 .ncta:hover{background:var(--gold2);transform:translateY(-1px)}
 
 /* HERO */
@@ -295,7 +295,7 @@ footer{padding:28px 48px;border-top:1px solid var(--ln);background:var(--ink2);d
     <a href="#skills">Skills</a>
     <a href="#cta">Profile</a>
   </nav>
-  <button class="ncta" onclick="dlProfile()">↓ Download Profile</button>
+  <a class="ncta" href="CV_and_How_i_Work.pdf" target="_blank" download="CV_and_How_i_Work.pdf">↓ Download Profile</a>
 </header>
 
 <section id="hero">
@@ -325,7 +325,7 @@ footer{padding:28px 48px;border-top:1px solid var(--ln);background:var(--ink2);d
     </div>
     <div class="ha">
       <a href="#services" class="bp">▸ View Services</a>
-      <button class="bo" onclick="dlProfile()">↓ Download Profile</button>
+      <a href="CV_and_How_i_Work.pdf" target="_blank" download="CV_and_How_i_Work.pdf" class="bo">↓ Download Profile</a>
     </div>
   </div>
   <div class="hr">
@@ -419,7 +419,7 @@ footer{padding:28px 48px;border-top:1px solid var(--ln);background:var(--ink2);d
       <div>
         <div class="svc-col-head"><span class="growth">🚀 Community Growth</span></div>
         <div class="svc-items">
-          <div class="svc-item"><div class="svc-icon">📣</div><div><div class="svc-name">Social Media Content Strategy</div><div class="svc-desc">X/Twitter, Discord &amp; Telegram content calendar — market threads, educational posts. Built to grow followers and drive engagement that converts to sign-ups.</div><span class="svc-tag retainer">Retainer</span></div></div>
+          <div class="svc-item"><div class="svc-icon">📣</div><div><div class="svc-name">Social Media Content Strategy</div><div class="svc-desc">X/Twitter &amp; Telegram content calendar — market threads, educational posts, alpha sharing. Built to grow followers and drive engagement that converts to sign-ups.</div><span class="svc-tag retainer">Retainer</span></div></div>
           <div class="svc-item"><div class="svc-icon">🎓</div><div><div class="svc-name">Educational Content for Retail</div><div class="svc-desc">Simplified on-chain explainers, market primers, and tokenomics breakdowns. Complex data into content retail users actually understand and share.</div><span class="svc-tag demand">On-Demand</span></div></div>
           <div class="svc-item"><div class="svc-icon">💬</div><div><div class="svc-name">Community Engagement & Moderation</div><div class="svc-desc">Telegram/Discord management, AMA support, market update threads. Keeping community active, informed, and engaged — building the habit of checking your platform first.</div><span class="svc-tag retainer">Retainer</span></div></div>
           <div class="svc-item"><div class="svc-icon">📢</div><div><div class="svc-name">Marketing Copywriting & Campaigns</div><div class="svc-desc">Exchange promotions, listing announcements, product launch copy. From ad creatives to email campaigns — backed by ex-Marketing Specialist experience.</div><span class="svc-tag demand">On-Demand</span></div></div>
@@ -428,10 +428,10 @@ footer{padding:28px 48px;border-top:1px solid var(--ln);background:var(--ink2);d
       <div>
         <div class="svc-col-head"><span class="research">🔬 Research Support</span></div>
         <div class="svc-items">
-          <div class="svc-item"><div class="svc-icon">📋</div><div><div class="svc-name">Project Listing Due Diligence</div><div class="svc-desc">Deep-dive token reports — tokenomics, team, VC backing. Gives your listing process credibility and protects the exchange from bad actors.</div><span class="svc-tag demand">On-Demand</span></div></div>
-          <div class="svc-item"><div class="svc-icon">📰</div><div><div class="svc-name">Weekly &amp; Monthly Market Reports</div><div class="svc-desc">Published reports your community can share — market digests, sector rotation. Research that doubles as high-value community content.</div><span class="svc-tag retainer">Retainer</span></div></div>
+          <div class="svc-item"><div class="svc-icon">📋</div><div><div class="svc-name">Project Listing Due Diligence</div><div class="svc-desc">Deep-dive token reports — tokenomics, team, VC backing, risk scoring. Gives your listing process credibility and protects the exchange from bad actors.</div><span class="svc-tag demand">On-Demand</span></div></div>
+          <div class="svc-item"><div class="svc-icon">📰</div><div><div class="svc-name">Weekly &amp; Monthly Market Reports</div><div class="svc-desc">Published reports your community can share — market digests, sector rotation, alpha signals. Research that doubles as high-value community content.</div><span class="svc-tag retainer">Retainer</span></div></div>
           <div class="svc-item"><div class="svc-icon">📈</div><div><div class="svc-name">Quarterly &amp; Annual Publications</div><div class="svc-desc">Flagship institutional reports for investor decks, regulatory submissions, and board-level strategy. Signals the exchange operates at a professional tier.</div><span class="svc-tag collab">Collab</span></div></div>
-          <div class="svc-item"><div class="svc-icon">💻</div><div><div class="svc-name">On-Chain Data Pipelines</div><div class="svc-desc">Python + SQL automated data collection, Plotly dashboards. The backend behind every report.</div><span class="svc-tag demand">On-Demand</span></div></div>
+          <div class="svc-item"><div class="svc-icon">💻</div><div><div class="svc-name">On-Chain Data Pipelines</div><div class="svc-desc">Python + SQL automated data collection, Plotly dashboards, VC flow aggregation from 52+ tracked funds. The backend behind every report.</div><span class="svc-tag demand">On-Demand</span></div></div>
         </div>
       </div>
     </div>
@@ -487,14 +487,14 @@ footer{padding:28px 48px;border-top:1px solid var(--ln);background:var(--ink2);d
     <div class="ctat fu">Ready to<br><em>Grow</em> Your <span class="gd">Exchange?</span></div>
     <p class="ctas fu">Community growth that drives volume. Research that builds trust.<br>One specialist. Full-stack execution. Available now.</p>
     <div class="ctab fu">
-      <button class="bp" onclick="dlProfile()">↓ Download Full Profile</button>
+      <a href="CV_and_How_i_Work.pdf" target="_blank" download="CV_and_How_i_Work.pdf" class="bp">↓ Download Full Profile</a>
       <a href="#services" class="bo">▸ View Services</a>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="fc">© 2025 <span>Research Intelligence</span> · Growth &amp; Analyst Division</div>
+  <div class="fc">© 2026 <span>Research Intelligence</span> · Growth &amp; Analyst Division</div>
   <div class="fs2"><span class="od"></span>Available for Exchange Partnership · 24/7</div>
 </footer>
 
@@ -532,52 +532,51 @@ footer{padding:28px 48px;border-top:1px solid var(--ln);background:var(--ink2);d
 
 <script>
 /* ═══════════════════════════════════════════════════════════
-   📁  KONFIGURASI REPORTS — EDIT DI SINI
+   📁  REPORTS CONFIGURATION — EDIT HERE
    
-   Cara tambah PDF:
-   1. Upload PDF ke folder yang sesuai di GitHub
-      Contoh: reports/A. Project Listing/ENA_Listing.pdf
-   2. Tambah entry di array reports:
-      { id:'PL-001', title:'Judul', filename:'namafile.pdf',
-        date:'Mar 2024', status:'New', tags:['tag1','tag2'] }
-   3. filename: null  →  tampil sebagai "Coming Soon"
-   4. Push ke GitHub → otomatis live
+   How to add a PDF:
+   1. Upload the PDF to the correct folder on GitHub
+      Example: reports/A. Project Listing/ENA_Listing.pdf
+   2. Add an entry in the reports array:
+      { id:'PL-001', title:'Title', filename:'filename.pdf',
+        date:'Mar 2025', status:'New', tags:['tag1','tag2'] }
+   3. filename: null  →  shows as "Coming Soon"
+   4. Push to GitHub → goes live automatically
 ═══════════════════════════════════════════════════════════ */
 const REPORTS_CONFIG=[
   {id:'listing',icon:'📋',period:'On-Demand',title:'Project Listing Report',
    desc:'Deep-dive fundamental analysis for new token listings — tokenomics, team, vesting, VC backing, and risk scoring.',
    folder:'reports/A. Project Listing/',reports:[
-    // { id:'PL-001', title:'Ethena (ENA) — Project Listing Due Diligence', filename:'ENA_Listing.pdf', date:'Mar 2024', status:'New', tags:['RWA','Due Diligence'] },
+    { id:'PL-001', title:'HYPE — Project Listing Due Diligence', filename:'Project Listing (HYPE).pdf', date:'2025', status:'Published', tags:['Perp DEX','Due Diligence'] },
   ]},
   {id:'performance',icon:'📊',period:'On-Demand',title:'Project Performance Report',
    desc:'Post-listing performance tracking with price action, volume analysis, liquidity depth, and holder behavior.',
    folder:'reports/B. Project Performance/',reports:[
-    // { id:'PP-001', title:'Bitcoin (BTC) — Performance & On-Chain Analysis', filename:'BTC_Performance.pdf', date:'Apr 2024', status:'Published', tags:['Layer 1','Performance'] },
+    { id:'PP-001', title:'HYPE — Project Performance & On-Chain Analysis', filename:'Project Performance (HYPE).pdf', date:'2025', status:'Published', tags:['Perp DEX','Performance'] },
   ]},
   {id:'weekly',icon:'📰',period:'Weekly',title:'Weekly Market Report',
    desc:'7-day digest: macro catalysts, top movers, DeFi TVL shifts, and curated alpha. Doubles as community content.',
    folder:'reports/C. Weekly Report/',reports:[
-    // { id:'WR-2024-001', title:'Week 1 — Market Intelligence Digest', filename:'WR_2024_W01.pdf', date:'Jan 7, 2024', status:'Published', tags:['Weekly','Market Intel'] },
+    { id:'WR-001', title:'Weekly Market Intelligence Digest', filename:'Weekly Report.pdf', date:'2025', status:'Published', tags:['Weekly','Market Intel'] },
   ]},
   {id:'monthly',icon:'📅',period:'Monthly',title:'Monthly Intelligence Report',
    desc:'Comprehensive monthly overview: macro correlation, sector rotation, portfolio performance attribution.',
    folder:'reports/D. Monthly Report/',reports:[
-    // { id:'MR-2024-01', title:'January 2024 — Monthly Intelligence & Market Report', filename:'MR_2024_January.pdf', date:'Jan 31, 2024', status:'Published', tags:['Monthly','Macro Analysis'] },
+    { id:'MR-001', title:'Monthly Intelligence & Market Report', filename:'Monthly_Report.pdf', date:'2025', status:'Published', tags:['Monthly','Macro Analysis'] },
   ]},
   {id:'quarterly',icon:'📈',period:'Quarterly',title:'Quarterly Research Report',
    desc:'90-day strategic review: VC deal flow, protocol revenues, institutional on-chain positioning shifts.',
    folder:'reports/E. Quarterly Report/',reports:[
-    // { id:'QR-01', title:'Q1 2024 — Halving Cycle Positioning & ETF Inflows', filename:'QR_2024_Q1.pdf', date:'Q1 2024', status:'Published', tags:['Quarterly','Strategic Research'] },
+    { id:'QR-001', title:'Quarterly Research & Strategic Positioning Report', filename:'Quarterly Report.pdf', date:'2025', status:'Published', tags:['Quarterly','Strategic Research'] },
   ]},
   {id:'yearly',icon:'🏆',period:'Annual',title:'Yearly Market Report',
    desc:'Full-year state-of-market publication — investor decks, regulatory submissions, strategic planning.',
    folder:'reports/F. Yearly Report/',reports:[
-    // { id:'YR-2024', title:'2024 Annual Report — Halving, ETF Approval & Institutional Adoption', filename:'YR_2024.pdf', date:'Dec 31, 2024', status:'New', tags:['Annual','Institutional'] },
+    { id:'YR-001', title:'Annual State-of-Market Report', filename:'Yearly Report.pdf', date:'2025', status:'Published', tags:['Annual','Institutional'] },
   ]},
   {id:'random',icon:'📂',period:'Various',title:'Random Work Report',
    desc:'Special projects, commissioned deep-dives, community content experiments, and one-off analyses.',
    folder:'reports/Random Work Report/',reports:[
-    // { id:'RW-001', title:'Special Research — Custom Project Analysis', filename:'RW_001.pdf', date:'Mar 2024', status:'New', tags:['Special','Research'] },
   ]},
 ];
 
@@ -693,15 +692,15 @@ function openDrawer(idx){
   document.getElementById('dtl').textContent=rt.title;
   const av=rt.reports.filter(r=>r.filename).length;
   document.getElementById('dsb').textContent=rt.reports.length===0
-    ?'Belum ada laporan — tambahkan PDF ke konfigurasi'
-    :`${av} tersedia · ${rt.reports.length-av} coming soon`;
+    ?'No reports yet — add PDFs to the configuration'
+    :`${av} available · ${rt.reports.length-av} coming soon`;
   document.getElementById('dsearch').value='';
   document.querySelectorAll('.dtf').forEach(b=>b.classList.remove('act'));
   document.querySelector('[data-f="all"]').classList.add('act');
   renderTbl(rt.reports);
   const btn=document.getElementById('dlAllBtn');
   const avr=rt.reports.filter(r=>r.filename);
-  btn.textContent=avr.length>0?`↓ Buka Semua (${avr.length}) PDF`:'— Belum Ada PDF';
+  btn.textContent=avr.length>0?`↓ Open All (${avr.length}) PDFs`:'— No PDFs Yet';
   btn.disabled=avr.length===0;
   document.getElementById('dov').classList.add('open');
   document.getElementById('drw').classList.add('open');
@@ -716,7 +715,7 @@ function renderTbl(reps){
   const sc={New:'sbn',Featured:'sbf',Published:'sbp',Soon:'sbs'};
   document.getElementById('dtbl').innerHTML=reps.length===0
     ?`<tr><td colspan="5" style="text-align:center;padding:40px;font-family:var(--fm);font-size:11px;color:var(--t3)">
-        Tidak ada laporan.<br><br><span style="font-size:10px">Edit REPORTS_CONFIG di index.html untuk menambahkan PDF</span>
+        No reports found.<br><br><span style="font-size:10px">Edit REPORTS_CONFIG in index.html to add PDFs</span>
        </td></tr>`
     :reps.map(r=>{
         const has=!!r.filename;
@@ -761,67 +760,8 @@ document.getElementById('dlAllBtn').onclick=function(){
   });
 };
 
-/* PROFILE PDF */
-function dlProfile(){
-  const {jsPDF}=window.jspdf;
-  const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
-  const W=210,H=297,M=22;
-  doc.setFillColor(4,6,13);doc.rect(0,0,W,H,'F');
-  doc.setFillColor(0,200,150);doc.rect(0,0,W,3,'F');
-  doc.setFillColor(0,200,150);doc.rect(0,0,3,H,'F');
-  doc.setFillColor(8,12,24);doc.rect(0,3,W,60,'F');
-  doc.setDrawColor(26,32,56);doc.setLineWidth(.4);doc.line(0,63,W,63);
-  doc.setFont('helvetica','bold');doc.setFontSize(9);doc.setTextColor(0,200,150);
-  doc.text('COMMUNITY GROWTH  ·  RESEARCH ANALYST  ·  DUAL SPECIALIST',M+2,13);
-  doc.setFontSize(28);doc.setTextColor(0,200,150);doc.text('GIVE MORE,',M+2,25);
-  doc.setTextColor(201,168,76);doc.text('GROW VOLUME.',M+2,39);
-  doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(138,148,176);
-  doc.text('Research Intelligence Division  ·  Exchange Growth & Analyst Partnership',M+2,50);
-  doc.setFillColor(0,200,150);doc.circle(M+2,57,2.5,'F');
-  doc.setFontSize(8.5);doc.setTextColor(0,200,150);
-  doc.text('Available for Hire · Community Growth that Drives Volume · 24/7',M+8,58.5);
-  let y=74;
-  const addSec=(title,col,items)=>{
-    if(y>H-40){doc.addPage();doc.setFillColor(4,6,13);doc.rect(0,0,W,H,'F');y=20;}
-    const rgb=col==='g'?[0,200,150]:[201,168,76];
-    doc.setFillColor(...rgb);doc.rect(M,y,3,5,'F');
-    doc.setFont('helvetica','bold');doc.setFontSize(11);doc.setTextColor(...rgb);
-    doc.text(title,M+7,y+4);
-    doc.setDrawColor(26,32,56);doc.line(M+7,y+7,W-M,y+7);
-    y+=14;
-    items.forEach(item=>{
-      if(y>H-20){doc.addPage();doc.setFillColor(4,6,13);doc.rect(0,0,W,H,'F');y=20;}
-      doc.setFillColor(11,15,26);doc.setDrawColor(20,26,40);
-      doc.roundedRect(M+2,y-3,W-M*2-4,10,1,1,'FD');
-      doc.setTextColor(...rgb);doc.setFont('helvetica','bold');doc.setFontSize(8.5);doc.text('▸',M+6,y+3.5);
-      doc.setTextColor(170,178,200);doc.setFont('helvetica','normal');doc.text(item,M+13,y+3.5);
-      y+=12;
-    });y+=8;
-  };
-  addSec('COMMUNITY GROWTH SERVICES','g',[
-    'Social Media Content Strategy — X/Twitter & Telegram content calendar & growth campaigns',
-    'Educational Content for Retail — Simplified on-chain explainers, primers & tokenomics breakdowns',
-    'Community Engagement & Moderation — Telegram/Discord management, AMA support, update threads',
-    'Marketing Copywriting & Campaigns — Exchange promotions, listing announcements, ad creatives',
-  ]);
-  addSec('RESEARCH SUPPORT SERVICES','r',[
-    'Project Listing Report — Tokenomics, team verification, VC analysis & 47-parameter risk scoring',
-    'Project Performance Report — Post-listing analytics, liquidity & on-chain holder behavior',
-    'Weekly & Monthly Market Reports — Market digests that double as shareable community content',
-    'Quarterly & Annual Publications — Flagship institutional reports for boards & investor decks',
-    'On-Chain Data Pipelines — Python + SQL automation, Plotly dashboards & VC flow aggregation',
-  ]);
-  addSec('CORE THESIS','g',[
-    'Exchanges that give more attract more users and generate more volume',
-    'Community growth is the revenue driver — research is the credibility moat',
-    'Fees can be copied overnight. Community trust cannot.',
-    'One specialist. Full-stack execution. Available now.',
-  ]);
-  doc.setFillColor(0,200,150);doc.rect(0,H-4,W,4,'F');
-  doc.setFont('helvetica','bold');doc.setFontSize(8);doc.setTextColor(100,110,140);
-  doc.text('Research Intelligence · Growth & Analyst Division · Give More → Grow Volume',W/2,H-7,{align:'center'});
-  doc.save('ResearchIntelligence_GrowthAnalystProfile.pdf');
-}
+
+
 </script>
 </body>
 </html>
