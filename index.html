@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Research Intelligence — Crypto Analyst Division</title>
+<title>Research Intelligence — Crypto Growth & Analyst Division</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -11,7 +11,8 @@
 :root{
   --ink:#04060d;--ink2:#080c18;--ink3:#0d1225;--ink4:#131929;
   --gold:#c9a84c;--gold2:#e8c97a;--gold-dim:rgba(201,168,76,.15);--gold-border:rgba(201,168,76,.22);
-  --em:#00c896;--cr:#e84545;--sky:#3b8fff;--pur:#a78bfa;
+  --em:#00c896;--em-dim:rgba(0,200,150,.12);--em-border:rgba(0,200,150,.22);
+  --cr:#e84545;--sky:#3b8fff;
   --t:#dde2f0;--t2:#8a94b0;--t3:#4a5270;--ln:#1a2038;
   --fd:'Cormorant Garamond',serif;--fs:'Syne',sans-serif;--fm:'JetBrains Mono',monospace;
 }
@@ -20,288 +21,423 @@ html{scroll-behavior:smooth}
 body{background:var(--ink);color:var(--t);font-family:var(--fs);overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");opacity:.4;pointer-events:none;z-index:0}
 
-/* TICKER */
-.tk{position:fixed;top:0;left:0;right:0;height:32px;background:var(--ink2);border-bottom:1px solid var(--ln);display:flex;align-items:center;overflow:hidden;z-index:200}
-.tk-badge{background:var(--gold);color:#000;font-family:var(--fm);font-size:9px;font-weight:700;padding:0 14px;height:100%;display:flex;align-items:center;letter-spacing:2px;flex-shrink:0;text-transform:uppercase;white-space:nowrap}
-.tk-scroll{overflow:hidden;flex:1}
-.tk-inner{display:flex;animation:skx 40s linear infinite;white-space:nowrap}
-.ti{font-family:var(--fm);font-size:10px;padding:0 20px;display:inline-flex;gap:7px;align-items:center;border-right:1px solid var(--ln);height:32px}
-.ti-s{color:var(--gold);font-weight:700}.ti-u{color:var(--em)}.ti-d{color:var(--cr)}
-@keyframes skx{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-
 /* HEADER */
-header{position:fixed;top:32px;left:0;right:0;height:64px;background:rgba(4,6,13,.93);backdrop-filter:blur(24px);border-bottom:1px solid var(--ln);display:flex;align-items:center;justify-content:space-between;padding:0 48px;z-index:190}
+header{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(4,6,13,.95);backdrop-filter:blur(24px);border-bottom:1px solid var(--ln);display:flex;align-items:center;justify-content:space-between;padding:0 48px;z-index:190}
 .nb{display:flex;align-items:center;gap:14px}
 .nm{width:32px;height:32px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:16px;color:var(--gold);font-weight:600}
 .nn{font-family:var(--fm);font-size:11px;color:var(--t2);letter-spacing:2px;text-transform:uppercase}
 .nn strong{color:var(--t);display:block;letter-spacing:1px}
-.nl{display:flex;gap:32px}
+.nl{display:flex;gap:36px}
 .nl a{font-family:var(--fm);font-size:10px;color:var(--t3);text-decoration:none;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
 .nl a:hover{color:var(--gold)}
 .ncta{background:var(--gold);color:#000;font-family:var(--fm);font-size:10px;font-weight:700;letter-spacing:2px;padding:9px 22px;border:none;cursor:pointer;text-transform:uppercase;transition:all .2s}
 .ncta:hover{background:var(--gold2);transform:translateY(-1px)}
 
 /* HERO */
-#hero{min-height:100vh;padding-top:96px;display:grid;grid-template-columns:1.1fr .9fr;position:relative;z-index:1;overflow:hidden}
-.hbg{position:absolute;bottom:-40px;right:-20px;font-family:var(--fd);font-size:260px;font-weight:700;color:rgba(201,168,76,.025);letter-spacing:-10px;line-height:1;pointer-events:none;user-select:none;white-space:nowrap}
+#hero{min-height:100vh;padding-top:64px;display:grid;grid-template-columns:1.15fr .85fr;position:relative;z-index:1;overflow:hidden}
+.hbg{position:absolute;bottom:-40px;right:-20px;font-family:var(--fd);font-size:240px;font-weight:700;color:rgba(0,200,150,.018);letter-spacing:-10px;line-height:1;pointer-events:none;user-select:none;white-space:nowrap}
 .hl{padding:80px 60px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--ln);position:relative;z-index:2}
-.hchip{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--gold-border);background:var(--gold-dim);padding:6px 16px;width:fit-content;margin-bottom:32px;font-family:var(--fm);font-size:9px;color:var(--gold);letter-spacing:2.5px;text-transform:uppercase}
-.ld{width:6px;height:6px;border-radius:50%;background:var(--em);animation:lp 1.8s ease-in-out infinite;flex-shrink:0}
+.dual-badge{display:flex;gap:10px;margin-bottom:30px;flex-wrap:wrap}
+.db-chip{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;font-family:var(--fm);font-size:9px;letter-spacing:2.5px;text-transform:uppercase}
+.db-chip.growth{border:1px solid var(--em-border);background:var(--em-dim);color:var(--em)}
+.db-chip.research{border:1px solid var(--gold-border);background:var(--gold-dim);color:var(--gold)}
+.ld{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.ld.g{background:var(--em);animation:lp 1.8s ease-in-out infinite}
+.ld.r{background:var(--gold);animation:lp 2.2s ease-in-out infinite}
 @keyframes lp{0%,100%{box-shadow:0 0 0 0 rgba(0,200,150,.5)}50%{box-shadow:0 0 0 5px rgba(0,200,150,0)}}
-.ht{font-family:var(--fd);font-size:clamp(60px,6.5vw,96px);line-height:.92;font-weight:600;letter-spacing:-1px;margin-bottom:28px}
-.ht em{color:var(--gold);font-style:italic}
-.ht .sk{-webkit-text-stroke:1px rgba(201,168,76,.45);color:transparent}
-.hb{font-family:var(--fm);font-size:12px;color:var(--t2);line-height:1.9;max-width:480px;margin-bottom:44px;border-left:2px solid var(--gold);padding-left:18px}
-.hkpi{display:flex;gap:0;margin-bottom:44px;border:1px solid var(--ln)}
-.kpi{padding:20px 28px;border-right:1px solid var(--ln);flex:1}.kpi:last-child{border-right:none}
-.kn{font-family:var(--fd);font-size:36px;color:var(--gold);font-weight:600;line-height:1}
-.kl{font-family:var(--fm);font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px;margin-top:5px}
-.ha{display:flex;gap:14px;align-items:center}
-.bp{background:var(--gold);color:#000;font-family:var(--fm);font-size:11px;font-weight:700;letter-spacing:1.5px;padding:14px 32px;border:none;cursor:pointer;text-transform:uppercase;transition:all .25s;text-decoration:none;display:inline-flex;align-items:center;gap:10px}
-.bp:hover{background:var(--gold2);box-shadow:0 12px 40px rgba(201,168,76,.25);transform:translateY(-2px)}
-.bo{background:transparent;color:var(--gold);font-family:var(--fm);font-size:11px;font-weight:700;letter-spacing:1.5px;padding:14px 32px;border:1px solid var(--gold-border);cursor:pointer;text-transform:uppercase;transition:all .25s;text-decoration:none;display:inline-flex;align-items:center;gap:10px}
+.ht{font-family:var(--fd);font-size:clamp(54px,5.8vw,88px);line-height:.92;font-weight:600;letter-spacing:-1px;margin-bottom:24px}
+.ht em{color:var(--em);font-style:italic}
+.ht .gd{color:var(--gold)}
+.ht .sk{-webkit-text-stroke:1px rgba(201,168,76,.4);color:transparent}
+.thesis{border:1px solid var(--ln);background:var(--ink2);padding:20px 24px;margin-bottom:28px;position:relative;overflow:hidden}
+.thesis::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--em),var(--gold))}
+.thesis-label{font-family:var(--fm);font-size:8px;color:var(--em);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+.thesis-text{font-family:var(--fm);font-size:11px;color:var(--t2);line-height:1.85}
+.thesis-text strong{color:var(--t)}
+.fw-inline{display:flex;align-items:center;gap:0;margin-bottom:28px;border:1px solid var(--ln);overflow:hidden}
+.fw-node{flex:1;padding:14px 10px;text-align:center;border-right:1px solid var(--ln);position:relative}
+.fw-node:last-child{border-right:none}
+.fw-icon{font-size:16px;display:block;margin-bottom:4px}
+.fw-lbl{font-family:var(--fm);font-size:8px;color:var(--t3);letter-spacing:1px;text-transform:uppercase;line-height:1.4}
+.fw-lbl strong{display:block;color:var(--t);font-size:8.5px;margin-bottom:2px}
+.fw-arr{position:absolute;right:-8px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--gold);z-index:2;background:var(--ink2);padding:0 2px}
+.hkpi{display:flex;gap:0;margin-bottom:32px;border:1px solid var(--ln)}
+.kpi{padding:16px 22px;border-right:1px solid var(--ln);flex:1}
+.kpi:last-child{border-right:none}
+.kn{font-family:var(--fd);font-size:30px;color:var(--gold);font-weight:600;line-height:1}
+.kn.green{color:var(--em)}
+.kl{font-family:var(--fm);font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px;margin-top:4px}
+.ha{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.bp{background:var(--em);color:#000;font-family:var(--fm);font-size:11px;font-weight:700;letter-spacing:1.5px;padding:14px 28px;border:none;cursor:pointer;text-transform:uppercase;transition:all .25s;text-decoration:none;display:inline-flex;align-items:center;gap:10px}
+.bp:hover{filter:brightness(1.1);box-shadow:0 12px 40px rgba(0,200,150,.25);transform:translateY(-2px)}
+.bo{background:transparent;color:var(--gold);font-family:var(--fm);font-size:11px;font-weight:700;letter-spacing:1.5px;padding:14px 28px;border:1px solid var(--gold-border);cursor:pointer;text-transform:uppercase;transition:all .25s;text-decoration:none;display:inline-flex;align-items:center;gap:10px}
 .bo:hover{background:var(--gold-dim);transform:translateY(-2px)}
 
 /* HERO RIGHT */
-.hr{background:var(--ink2);display:flex;flex-direction:column;justify-content:center;padding:60px 48px;position:relative;overflow:hidden}
-.hr::before{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;background:radial-gradient(circle,rgba(201,168,76,.07) 0%,transparent 70%);pointer-events:none}
-.plabel{font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:3px;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:10px}
-.plabel::before{content:'◈';color:var(--gold);font-size:10px}
+.hr{background:var(--ink2);display:flex;flex-direction:column;justify-content:center;padding:60px 44px;position:relative;overflow:hidden}
+.hr::before{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;background:radial-gradient(circle,rgba(0,200,150,.06) 0%,transparent 70%);pointer-events:none}
+.plabel{font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.plabel::before{content:'◈';color:var(--em);font-size:10px}
 .rpv{display:flex;flex-direction:column;gap:1px;background:var(--ln)}
-.rpr{background:var(--ink3);padding:12px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:background .2s;position:relative;overflow:hidden}
-.rpr::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:var(--gold);transition:width .2s}
+.rpr{background:var(--ink3);padding:12px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:background .2s;position:relative;overflow:hidden}
+.rpr::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:var(--em);transition:width .2s}
 .rpr:hover{background:var(--ink4)}.rpr:hover::before{width:2px}
-.ri2{width:32px;height:32px;border:1px solid var(--ln);background:var(--ink4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px}
+.ri{width:30px;height:30px;border:1px solid var(--ln);background:var(--ink4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px}
 .rinfo{flex:1;min-width:0}
 .rn{font-family:var(--fm);font-size:10px;color:var(--t);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.5px}
 .rm{font-family:var(--fm);font-size:9px;color:var(--t3);margin-top:2px}
 .rbadge{font-family:var(--fm);font-size:8px;letter-spacing:1px;padding:3px 8px;flex-shrink:0;text-transform:uppercase}
-.bg{background:rgba(0,200,150,.12);color:var(--em);border:1px solid rgba(0,200,150,.2)}
+.bn{background:rgba(0,200,150,.12);color:var(--em);border:1px solid rgba(0,200,150,.2)}
 .bp2{background:rgba(201,168,76,.1);color:var(--gold);border:1px solid var(--gold-border)}
 .bl{background:rgba(59,143,255,.1);color:var(--sky);border:1px solid rgba(59,143,255,.2)}
-.rdb{background:transparent;border:1px solid var(--ln);color:var(--t3);font-family:var(--fm);font-size:9px;padding:5px 10px;cursor:pointer;transition:all .2s;flex-shrink:0;text-transform:uppercase;letter-spacing:1px}
-.rdb:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
 
 /* SECTIONS */
 section{position:relative;z-index:1}
 .con{max-width:1360px;margin:0 auto;padding:0 48px}
-.sh{margin-bottom:64px}
+.sh{margin-bottom:60px}
 .sey{font-family:var(--fm);font-size:9px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:12px}
 .sey::after{content:'';height:1px;width:60px;background:var(--gold-border)}
+.sey.gc{color:var(--em)}.sey.gc::after{background:var(--em-border)}
 .sti{font-family:var(--fd);font-size:clamp(44px,4.5vw,68px);font-weight:500;line-height:.95;letter-spacing:-1px}
 .sti b{color:var(--gold);font-style:italic;font-weight:600}
+.sti b.gc{color:var(--em)}
 
-/* REPORT TYPES */
-#reports{padding:120px 0;background:var(--ink2);border-top:1px solid var(--ln)}
-.rtg{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln)}
-.rtc{background:var(--ink);padding:36px 30px;cursor:pointer;position:relative;overflow:hidden;border-bottom:3px solid transparent;transition:all .3s}
+/* FLYWHEEL */
+#flywheel{padding:100px 0;background:var(--ink3);border-top:1px solid var(--ln)}
+.fw-wrap{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.fw-diagram{display:flex;flex-direction:column;gap:1px;background:var(--ln);border:1px solid var(--ln)}
+.fw-step{background:var(--ink2);padding:22px 26px;display:flex;align-items:center;gap:18px;position:relative;transition:background .2s}
+.fw-step:hover{background:var(--ink4)}
+.fw-step-num{font-family:var(--fd);font-size:44px;color:rgba(0,200,150,.07);font-weight:700;line-height:1;flex-shrink:0;width:48px;text-align:center}
+.fw-step-body{flex:1}
+.fw-step-title{font-family:var(--fd);font-size:19px;color:var(--t);font-weight:600;margin-bottom:4px}
+.fw-step-title .gc{color:var(--em)}
+.fw-step-title .go{color:var(--gold)}
+.fw-step-desc{font-family:var(--fm);font-size:10px;color:var(--t3);line-height:1.7}
+.fw-step-arr{font-size:14px;color:var(--t3);flex-shrink:0}
+.fw-step:nth-child(1) .fw-step-arr{color:var(--em)}
+.fw-step:nth-child(2) .fw-step-arr{color:var(--gold)}
+.fw-step:nth-child(3) .fw-step-arr{color:var(--sky)}
+.fw-step:nth-child(4) .fw-step-arr{color:var(--em)}
+
+/* SERVICES */
+#services{padding:120px 0;background:var(--ink2);border-top:1px solid var(--ln)}
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--ln);border:1px solid var(--ln)}
+.svc-col-head{background:var(--ink3);padding:18px 28px;border-bottom:1px solid var(--ln)}
+.svc-col-head span{font-family:var(--fm);font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:4px 12px;display:inline-block}
+.svc-col-head span.growth{background:var(--em-dim);color:var(--em);border:1px solid var(--em-border)}
+.svc-col-head span.research{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border)}
+.svc-items{background:var(--ink)}
+.svc-item{padding:20px 28px;border-bottom:1px solid var(--ln);display:flex;align-items:flex-start;gap:14px;transition:background .2s}
+.svc-item:last-child{border-bottom:none}
+.svc-item:hover{background:var(--ink3)}
+.svc-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.svc-name{font-family:var(--fd);font-size:17px;color:var(--t);font-weight:600;margin-bottom:4px}
+.svc-desc{font-family:var(--fm);font-size:10px;color:var(--t3);line-height:1.7}
+.svc-tag{display:inline-block;margin-top:7px;font-family:var(--fm);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px}
+.svc-tag.demand{background:var(--em-dim);color:var(--em);border:1px solid var(--em-border)}
+.svc-tag.retainer{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border)}
+.svc-tag.collab{background:rgba(59,143,255,.1);color:var(--sky);border:1px solid rgba(59,143,255,.2)}
+
+/* REPORTS */
+#reports{padding:120px 0;background:var(--ink);border-top:1px solid var(--ln)}
+.rtg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln)}
+.rtc{background:var(--ink2);padding:36px 30px;cursor:pointer;position:relative;overflow:hidden;transition:all .3s}
 .rtc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transition:transform .3s;transform-origin:left}
 .rtc:hover{background:var(--ink3)}.rtc:hover::after{transform:scaleX(1)}
-.rtn{font-family:var(--fd);font-size:56px;color:rgba(201,168,76,.07);position:absolute;top:12px;right:16px;line-height:1;font-weight:700}
-.rticon{font-size:28px;margin-bottom:12px;display:block}
+.rtn{font-family:var(--fd);font-size:56px;color:rgba(201,168,76,.05);position:absolute;top:12px;right:14px;line-height:1;font-weight:700}
+.rticon{font-size:26px;margin-bottom:10px;display:block}
 .rtp{font-family:var(--fm);font-size:9px;color:var(--gold);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:6px}
-.rttl{font-family:var(--fd);font-size:22px;font-weight:600;color:var(--t);margin-bottom:8px;line-height:1.1}
-.rtd{font-size:12px;color:var(--t2);line-height:1.65;margin-bottom:14px}
+.rttl{font-family:var(--fd);font-size:21px;font-weight:600;color:var(--t);margin-bottom:8px;line-height:1.1}
+.rtd{font-size:12px;color:var(--t2);line-height:1.7;margin-bottom:12px}
 .rtcnt{font-family:var(--fm);font-size:10px;color:var(--t3);display:flex;align-items:center;gap:6px;text-transform:uppercase;letter-spacing:1px}
-.rtcnt .rnum{color:var(--gold);font-weight:700;font-size:12px}
-/* live badge on card */
-.card-live{
-  position:absolute;top:14px;left:14px;
-  font-family:var(--fm);font-size:8px;letter-spacing:1.5px;
-  padding:3px 8px;text-transform:uppercase;
-  background:rgba(0,200,150,.12);color:var(--em);border:1px solid rgba(0,200,150,.2)
-}
-.rtar{position:absolute;bottom:20px;right:20px;font-family:var(--fm);font-size:16px;color:var(--t3);transition:all .25s}
+.rtcnt .avail{color:var(--em)}.rtcnt .soon{color:var(--t3)}
+.rtar{position:absolute;bottom:18px;right:18px;font-family:var(--fm);font-size:16px;color:var(--t3);transition:all .25s}
 .rtc:hover .rtar{color:var(--gold);transform:translateX(4px)}
+
+/* SKILLS */
+#skills{padding:120px 0;background:var(--ink2);border-top:1px solid var(--ln)}
+.skw{display:grid;grid-template-columns:1fr 1fr;gap:80px}
+.sk-col-label{font-family:var(--fm);font-size:9px;letter-spacing:3px;text-transform:uppercase;margin-bottom:24px;padding:7px 14px;display:inline-block}
+.sk-col-label.growth{background:var(--em-dim);color:var(--em);border:1px solid var(--em-border)}
+.sk-col-label.research{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border)}
+.ski{margin-bottom:22px}
+.skr{display:flex;justify-content:space-between;font-family:var(--fm);font-size:11px;color:var(--t2);text-transform:uppercase;letter-spacing:1px;margin-bottom:7px}
+.skp{color:var(--gold)}.skp.gc{color:var(--em)}
+.skt{height:3px;background:var(--ln);overflow:hidden}
+.skb{height:100%;width:0;transition:width 1.2s ease}
+.skb.g{background:linear-gradient(90deg,var(--em),#00e6ab)}
+.skb.r{background:linear-gradient(90deg,var(--gold),var(--em))}
+
+/* TOOLS */
+#tools{padding:120px 0;background:var(--ink);border-top:1px solid var(--ln)}
+.tg2{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln)}
+.tc{background:var(--ink2);padding:24px 20px;transition:background .2s}
+.tc:hover{background:var(--ink3)}
+.tct{font-family:var(--fm);font-size:8px;letter-spacing:2px;padding:3px 8px;width:fit-content;margin-bottom:10px;text-transform:uppercase}
+.tct.pro{background:rgba(201,168,76,.1);color:var(--gold);border:1px solid var(--gold-border)}
+.tct.com{background:var(--em-dim);color:var(--em);border:1px solid var(--em-border)}
+.tct.soc{background:rgba(59,143,255,.1);color:var(--sky);border:1px solid rgba(59,143,255,.2)}
+.tcn{font-family:var(--fd);font-size:19px;font-weight:600;color:var(--t);margin-bottom:6px;letter-spacing:.5px}
+.tcd{font-family:var(--fm);font-size:10px;color:var(--t3);line-height:1.7}
+.fps{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px}
+.fp{font-family:var(--fm);font-size:10px;padding:5px 12px;border:1px solid var(--ln);color:var(--t3);background:var(--ink2);transition:all .2s;cursor:default}
+.fp:hover{border-color:var(--gold);color:var(--gold)}
+
+/* VALUE */
+#value{padding:120px 0;background:var(--ink2);border-top:1px solid var(--ln)}
+.vg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln)}
+.vc{background:var(--ink);padding:34px 30px;transition:background .25s;position:relative;overflow:hidden}
+.vc:hover{background:var(--ink3)}
+.vcbg{position:absolute;bottom:-10px;right:-10px;font-family:var(--fd);font-size:90px;color:rgba(201,168,76,.04);line-height:1;font-weight:700;pointer-events:none;user-select:none}
+.vci{font-size:24px;margin-bottom:12px}
+.vct{font-family:var(--fd);font-size:19px;font-weight:600;color:var(--t);margin-bottom:10px;line-height:1.2}
+.vcd{font-size:12px;color:var(--t2);line-height:1.75}
+.vc-tag{display:inline-block;margin-top:10px;font-family:var(--fm);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px}
+.vc-tag.g{background:var(--em-dim);color:var(--em);border:1px solid var(--em-border)}
+.vc-tag.r{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border)}
+
+/* CTA */
+#cta{padding:130px 0;background:var(--ink);border-top:1px solid var(--ln);text-align:center;position:relative;overflow:hidden}
+#cta::before{content:'GROWTH';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--fd);font-size:200px;font-weight:700;color:rgba(0,200,150,.018);letter-spacing:-5px;white-space:nowrap;pointer-events:none}
+.ctat{font-family:var(--fd);font-size:clamp(50px,5.5vw,80px);font-weight:500;color:var(--t);line-height:.95;margin-bottom:20px;letter-spacing:-1px;position:relative;z-index:1}
+.ctat em{color:var(--em);font-style:italic}
+.ctat .gd{color:var(--gold)}
+.ctas{font-family:var(--fm);font-size:12px;color:var(--t2);line-height:1.85;margin-bottom:48px;position:relative;z-index:1}
+.ctab{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+
+/* FOOTER */
+footer{padding:28px 48px;border-top:1px solid var(--ln);background:var(--ink2);display:flex;justify-content:space-between;align-items:center}
+.fc{font-family:var(--fm);font-size:10px;color:var(--t3)}
+.fc span{color:var(--gold)}
+.fs2{display:flex;align-items:center;gap:8px;font-family:var(--fm);font-size:10px;color:var(--t3)}
+.od{width:6px;height:6px;border-radius:50%;background:var(--em);animation:lp 2s infinite}
 
 /* DRAWER */
 .dov{position:fixed;inset:0;background:rgba(4,6,13,.88);z-index:300;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(8px)}
 .dov.open{opacity:1;pointer-events:all}
-.drw{position:fixed;right:0;top:0;bottom:0;width:720px;background:var(--ink2);border-left:1px solid var(--ln);z-index:301;transform:translateX(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;overflow:hidden}
+.drw{position:fixed;right:0;top:0;bottom:0;width:700px;background:var(--ink2);border-left:1px solid var(--ln);z-index:301;transform:translateX(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;overflow:hidden}
 .drw.open{transform:translateX(0)}
-.dh{padding:22px 32px;border-bottom:1px solid var(--ln);background:var(--ink3);display:flex;align-items:flex-start;gap:16px;flex-shrink:0}
-.dhico{font-size:26px}
+.dh{padding:22px 30px;border-bottom:1px solid var(--ln);background:var(--ink3);display:flex;align-items:flex-start;gap:14px;flex-shrink:0}
+.dhicon{font-size:26px}
 .dhm{flex:1}
 .dhtype{font-family:var(--fm);font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
-.dhtl{font-family:var(--fd);font-size:24px;font-weight:600;color:var(--t);line-height:1.1}
-.dhsb{font-family:var(--fm);font-size:10px;color:var(--t2);margin-top:5px}
-.dclo{background:transparent;border:1px solid var(--ln);color:var(--t2);width:34px;height:34px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.dhtitle{font-family:var(--fd);font-size:24px;font-weight:600;color:var(--t);line-height:1.1}
+.dhsub{font-family:var(--fm);font-size:10px;color:var(--t2);margin-top:5px}
+.dclo{background:transparent;border:1px solid var(--ln);color:var(--t2);width:36px;height:36px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
 .dclo:hover{border-color:var(--cr);color:var(--cr)}
-
-/* REAL FILES BANNER */
-.real-files-banner{
-  background:rgba(0,200,150,.06);border-bottom:1px solid rgba(0,200,150,.15);
-  padding:10px 32px;flex-shrink:0;display:flex;align-items:center;gap:12px
-}
-.rfb-dot{width:7px;height:7px;border-radius:50%;background:var(--em);animation:lp 1.5s infinite;flex-shrink:0}
-.rfb-text{font-family:var(--fm);font-size:10px;color:var(--em);letter-spacing:1px}
-.rfb-count{font-family:var(--fm);font-size:10px;color:var(--t3);margin-left:auto}
-
-/* REAL FILE ROW */
-.real-row{
-  background:rgba(0,200,150,.05);border-bottom:2px solid rgba(0,200,150,.15);
-  padding:16px 32px;display:flex;align-items:center;gap:14px;cursor:pointer;
-  transition:background .2s;position:relative
-}
-.real-row:hover{background:rgba(0,200,150,.1)}
-.real-row::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--em)}
-.rr-icon{font-size:22px;flex-shrink:0}
-.rr-info{flex:1;min-width:0}
-.rr-title{font-family:var(--fs);font-size:13px;color:var(--t);font-weight:600}
-.rr-meta{font-family:var(--fm);font-size:9px;color:var(--t3);margin-top:3px;display:flex;gap:12px}
-.rr-badge{font-family:var(--fm);font-size:8px;padding:3px 9px;background:rgba(0,200,150,.15);color:var(--em);border:1px solid rgba(0,200,150,.25);letter-spacing:1.5px;text-transform:uppercase;flex-shrink:0}
-.rr-dl{background:var(--em);color:#000;font-family:var(--fm);font-size:9px;font-weight:700;padding:8px 16px;border:none;cursor:pointer;letter-spacing:1.5px;text-transform:uppercase;transition:all .2s;flex-shrink:0;display:flex;align-items:center;gap:6px}
-.rr-dl:hover{background:#00ffb3;transform:translateY(-1px)}
-
-.dtb{padding:12px 32px;border-bottom:1px solid var(--ln);display:flex;align-items:center;gap:10px;flex-shrink:0;background:var(--ink2)}
-.dts{flex:1;background:var(--ink3);border:1px solid var(--ln);padding:8px 14px;font-family:var(--fm);font-size:11px;color:var(--t);outline:none;transition:border .2s}
-.dts:focus{border-color:var(--gold)}.dts::placeholder{color:var(--t3)}
-.dtf{background:var(--ink3);border:1px solid var(--ln);color:var(--t3);font-family:var(--fm);font-size:9px;padding:8px 12px;cursor:pointer;letter-spacing:1px;text-transform:uppercase;transition:all .2s;white-space:nowrap}
+.dtb{padding:12px 30px;border-bottom:1px solid var(--ln);display:flex;align-items:center;gap:10px;flex-shrink:0;background:var(--ink2)}
+.dts{flex:1;background:var(--ink3);border:1px solid var(--ln);padding:8px 13px;font-family:var(--fm);font-size:11px;color:var(--t);outline:none;transition:border .2s}
+.dts:focus{border-color:var(--gold)}
+.dts::placeholder{color:var(--t3)}
+.dtf{background:var(--ink3);border:1px solid var(--ln);color:var(--t3);font-family:var(--fm);font-size:9px;padding:7px 11px;cursor:pointer;letter-spacing:1px;text-transform:uppercase;transition:all .2s;white-space:nowrap}
 .dtf.act,.dtf:hover{border-color:var(--gold);color:var(--gold)}
-
-.db{flex:1;overflow-y:auto;padding:0}
+.db{flex:1;overflow-y:auto}
 .db::-webkit-scrollbar{width:4px}
 .db::-webkit-scrollbar-track{background:var(--ink2)}
 .db::-webkit-scrollbar-thumb{background:var(--ln)}
-
-/* TABLE */
 .rtbl{width:100%;border-collapse:collapse}
-.rth th{font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:2px;text-transform:uppercase;padding:11px 24px;border-bottom:1px solid var(--ln);text-align:left;background:var(--ink3);position:sticky;top:0;z-index:1}
-.rtbd tr{border-bottom:1px solid var(--ln);transition:background .15s;cursor:pointer}
-.rtbd tr:hover{background:var(--ink3)}
-.rtbd td{padding:13px 24px;vertical-align:middle}
+.rth th{font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:2px;text-transform:uppercase;padding:11px 22px;border-bottom:1px solid var(--ln);text-align:left;background:var(--ink3);position:sticky;top:0;z-index:1}
+.rtbd tr{border-bottom:1px solid var(--ln);transition:background .15s}
+.rtbd tr.has-file{cursor:pointer}.rtbd tr.has-file:hover{background:var(--ink3)}
+.rtbd tr.no-file{opacity:.5;cursor:default}
+.rtbd td{padding:13px 22px;vertical-align:middle}
 .tid{font-family:var(--fm);font-size:9px;color:var(--t3)}
-.tttl{font-family:var(--fs);font-size:13px;color:var(--t);font-weight:500;margin-bottom:2px}
-.ttags{display:flex;gap:5px;flex-wrap:wrap;margin-top:4px}
-.tg{font-family:var(--fm);font-size:8px;padding:2px 7px;letter-spacing:1px;text-transform:uppercase}
+.tttl{font-family:var(--fs);font-size:12px;color:var(--t);font-weight:500;margin-bottom:3px}
+.ttags{display:flex;gap:4px;flex-wrap:wrap;margin-top:4px}
+.tg{font-family:var(--fm);font-size:8px;padding:2px 6px;letter-spacing:1px;text-transform:uppercase}
 .tgs{background:rgba(59,143,255,.08);color:var(--sky);border:1px solid rgba(59,143,255,.15)}
 .tdt{font-family:var(--fm);font-size:10px;color:var(--t2)}
-.sb{font-family:var(--fm);font-size:8px;padding:4px 10px;letter-spacing:1.5px;text-transform:uppercase;display:inline-block}
+.sb{font-family:var(--fm);font-size:8px;padding:3px 9px;letter-spacing:1.5px;text-transform:uppercase;display:inline-block}
 .sbn{background:rgba(0,200,150,.12);color:var(--em);border:1px solid rgba(0,200,150,.2)}
 .sbp{background:rgba(201,168,76,.1);color:var(--gold);border:1px solid var(--gold-border)}
 .sbf{background:rgba(232,69,69,.1);color:var(--cr);border:1px solid rgba(232,69,69,.2)}
-.tdl{background:transparent;border:1px solid var(--ln);color:var(--t3);font-family:var(--fm);font-size:9px;padding:6px 12px;cursor:pointer;letter-spacing:1px;text-transform:uppercase;transition:all .2s;white-space:nowrap;display:inline-flex;align-items:center;gap:5px}
+.sbs{background:rgba(74,82,112,.15);color:var(--t3);border:1px solid var(--ln)}
+.tdl{background:transparent;border:1px solid var(--ln);color:var(--t3);font-family:var(--fm);font-size:9px;padding:6px 11px;cursor:pointer;letter-spacing:1px;text-transform:uppercase;transition:all .2s;white-space:nowrap;display:inline-flex;align-items:center;gap:4px;text-decoration:none}
 .tdl:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
-
-.dfoot{padding:14px 32px;border-top:1px solid var(--ln);background:var(--ink3);flex-shrink:0;display:flex;justify-content:space-between;align-items:center}
+.tdl.disabled{opacity:.3;cursor:not-allowed;pointer-events:none}
+.dfoot{padding:14px 30px;border-top:1px solid var(--ln);background:var(--ink3);flex-shrink:0;display:flex;justify-content:space-between;align-items:center}
 .dfc{font-family:var(--fm);font-size:10px;color:var(--t3)}
-.dfc span{color:var(--gold)}
-.dfda{background:var(--gold);color:#000;font-family:var(--fm);font-size:10px;font-weight:700;letter-spacing:1.5px;padding:9px 22px;border:none;cursor:pointer;text-transform:uppercase;transition:all .2s}
+.dfc .avail{color:var(--em)}
+.dfda{background:var(--gold);color:#000;font-family:var(--fm);font-size:10px;font-weight:700;letter-spacing:1.5px;padding:10px 22px;border:none;cursor:pointer;text-transform:uppercase;transition:all .2s}
 .dfda:hover{background:var(--gold2)}
-
-/* SKILLS */
-#skills{padding:120px 0;background:var(--ink);border-top:1px solid var(--ln)}
-.skw{display:grid;grid-template-columns:1fr 1fr;gap:80px}
-.ski{margin-bottom:28px}
-.skr{display:flex;justify-content:space-between;font-family:var(--fm);font-size:11px;color:var(--t2);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
-.skp{color:var(--gold)}
-.skt{height:3px;background:var(--ln);overflow:hidden}
-.skb{height:100%;background:linear-gradient(90deg,var(--gold),var(--em));width:0;transition:width 1.2s ease}
-
-/* TOOLS */
-#tools{padding:120px 0;background:var(--ink2);border-top:1px solid var(--ln)}
-.tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln)}
-.tc{background:var(--ink);padding:28px 24px;transition:background .2s}
-.tc:hover{background:var(--ink3)}
-.tct{font-family:var(--fm);font-size:8px;letter-spacing:2px;padding:3px 8px;width:fit-content;margin-bottom:12px;text-transform:uppercase}
-.tct.pro{background:rgba(201,168,76,.1);color:var(--gold);border:1px solid var(--gold-border)}
-.tct.com{background:rgba(0,200,150,.08);color:var(--em);border:1px solid rgba(0,200,150,.15)}
-.tcn{font-family:var(--fd);font-size:22px;font-weight:600;color:var(--t);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
-.tcd{font-family:var(--fm);font-size:10px;color:var(--t3);line-height:1.7}
-.fps{display:flex;gap:10px;flex-wrap:wrap;margin-top:32px}
-.fp{font-family:var(--fm);font-size:10px;padding:6px 14px;border:1px solid var(--ln);color:var(--t3);background:var(--ink3);transition:all .2s;cursor:default}
-.fp:hover{border-color:var(--gold);color:var(--gold)}
-
-/* VALUE */
-#value{padding:120px 0;background:var(--ink);border-top:1px solid var(--ln)}
-.vg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln);border:1px solid var(--ln)}
-.vc{background:var(--ink2);padding:40px 36px;transition:background .25s;position:relative;overflow:hidden}
-.vc:hover{background:var(--ink3)}
-.vcbg{position:absolute;bottom:-10px;right:-10px;font-family:var(--fd);font-size:100px;color:rgba(201,168,76,.04);line-height:1;font-weight:700;pointer-events:none;user-select:none}
-.vci{font-size:28px;margin-bottom:18px}
-.vct{font-family:var(--fd);font-size:22px;font-weight:600;color:var(--t);margin-bottom:12px;line-height:1.2}
-.vcd{font-size:13px;color:var(--t2);line-height:1.75}
-
-/* CTA */
-#cta{padding:140px 0;background:var(--ink2);border-top:1px solid var(--ln);text-align:center;position:relative;overflow:hidden}
-#cta::before{content:'RESEARCH';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--fd);font-size:200px;font-weight:700;color:rgba(201,168,76,.023);letter-spacing:-5px;white-space:nowrap;pointer-events:none}
-.ctat{font-family:var(--fd);font-size:clamp(52px,6vw,84px);font-weight:500;color:var(--t);line-height:.95;margin-bottom:20px;letter-spacing:-1px;position:relative;z-index:1}
-.ctat em{color:var(--gold);font-style:italic}
-.ctas{font-family:var(--fm);font-size:12px;color:var(--t2);line-height:1.8;margin-bottom:52px;position:relative;z-index:1}
-.ctab{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
-
-/* FOOTER */
-footer{padding:28px 48px;border-top:1px solid var(--ln);background:var(--ink);display:flex;justify-content:space-between;align-items:center}
-.fc{font-family:var(--fm);font-size:10px;color:var(--t3)}.fc span{color:var(--gold)}
-.fs2{display:flex;align-items:center;gap:8px;font-family:var(--fm);font-size:10px;color:var(--t3)}
-.od{width:6px;height:6px;border-radius:50%;background:var(--em);animation:lp 2s infinite}
 
 /* FADE */
 .fu{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
 .fu.in{opacity:1;transform:translateY(0)}
 
-/* COMING SOON ROW */
-.cs-row td{opacity:.45}
-.cs-lbl{font-family:var(--fm);font-size:8px;padding:3px 8px;background:rgba(74,82,112,.2);color:var(--t3);border:1px solid var(--t3);letter-spacing:1px;text-transform:uppercase;display:inline-block}
-
-@media(max-width:1100px){.rtg{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:960px){
   #hero{grid-template-columns:1fr}.hr{display:none}
-  .hl{padding:60px 24px}.rtg{grid-template-columns:1fr}
-  .drw{width:100%}.tgrid{grid-template-columns:repeat(2,1fr)}
-  .vg{grid-template-columns:1fr}.skw{grid-template-columns:1fr;gap:40px}
+  .hl{padding:52px 24px}
+  .rtg,.svc-grid,.vg{grid-template-columns:1fr}
+  .drw{width:100%}
+  .tg2{grid-template-columns:repeat(2,1fr)}
+  .skw{grid-template-columns:1fr;gap:32px}
+  .fw-wrap{grid-template-columns:1fr}
   .con{padding:0 24px}
   header{padding:0 24px}.nl{display:none}
   footer{flex-direction:column;gap:12px;padding:24px}
-  #reports,#skills,#tools,#value,#cta{padding:80px 0}
+  #flywheel,#services,#reports,#skills,#tools,#value,#cta{padding:72px 0}
 }
 </style>
 </head>
 <body>
 
-<!-- TICKER -->
-<div class="tk">
-  <div class="tk-badge">● Live Market</div>
-  <div class="tk-scroll"><div class="tk-inner" id="tkr"></div></div>
-</div>
-
-<!-- HEADER -->
 <header>
   <div class="nb">
     <div class="nm">RI</div>
-    <div class="nn"><strong>Research Intelligence</strong>Crypto Analyst Division</div>
+    <div class="nn"><strong>Research Intelligence</strong>Growth &amp; Analyst Division</div>
   </div>
   <nav class="nl">
-    <a href="#reports">Reports</a><a href="#skills">Skills</a>
-    <a href="#tools">Tools</a><a href="#value">Value</a><a href="#cta">Download</a>
+    <a href="#flywheel">Strategy</a>
+    <a href="#services">Services</a>
+    <a href="#reports">Reports</a>
+    <a href="#skills">Skills</a>
+    <a href="#cta">Profile</a>
   </nav>
   <button class="ncta" onclick="dlProfile()">↓ Download Profile</button>
 </header>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hl fu">
-    <div class="hchip"><span class="ld"></span>Available · Exchange Research Division</div>
-    <h1 class="ht">On-Chain<br><em>Intelligence</em><br><span class="sk">Division</span></h1>
-    <p class="hb">Institutional-grade crypto research — from project listing due diligence to annual performance publications. Powered by pro-tier data infrastructure, Python pipelines, and Macro correlation</p>
+    <div class="dual-badge">
+      <div class="db-chip growth"><span class="ld g"></span>Community Growth</div>
+      <div class="db-chip research"><span class="ld r"></span>Research Analyst</div>
+    </div>
+    <h1 class="ht">Give <em>More</em>,<br>Grow <span class="gd">Volume</span>,<br><span class="sk">Win Market</span></h1>
+    <div class="thesis">
+      <div class="thesis-label">Core Thesis</div>
+      <div class="thesis-text">
+        Exchanges that <strong>give more to their community</strong> — better insights, educational content, real research — attract more users, generate <strong>more trading volume</strong>, and build the trust that turns users into long-term participants.<br><br>
+        I execute both sides: <strong>community growth that drives volume</strong>, backed by institutional research that builds credibility.
+      </div>
+    </div>
+    <div class="fw-inline">
+      <div class="fw-node"><span class="fw-icon">📣</span><div class="fw-lbl"><strong>Community</strong>Growth Engine</div><div class="fw-arr">→</div></div>
+      <div class="fw-node"><span class="fw-icon">👥</span><div class="fw-lbl"><strong>More Users</strong>Attracted</div><div class="fw-arr">→</div></div>
+      <div class="fw-node"><span class="fw-icon">📈</span><div class="fw-lbl"><strong>More Volume</strong>Generated</div><div class="fw-arr">→</div></div>
+      <div class="fw-node"><span class="fw-icon">🔬</span><div class="fw-lbl"><strong>Research</strong>Builds Trust</div></div>
+    </div>
     <div class="hkpi">
-      <div class="kpi"><div class="kn">24H</div><div class="kl">Market Coverage</div></div>
-      <div class="kpi"><div class="kn">7</div><div class="kl">Report Categories</div></div>
-      <div class="kpi"><div class="kn" id="totalCount">—</div><div class="kl">Reports Available</div></div>
+      <div class="kpi"><div class="kn green">2-in-1</div><div class="kl">Growth + Research</div></div>
+      <div class="kpi"><div class="kn" id="kpi-cat">7</div><div class="kl">Report Categories</div></div>
+      <div class="kpi"><div class="kn" id="kpi-total">24H</div><div class="kl">Market Coverage</div></div>
     </div>
     <div class="ha">
-      <a href="#reports" class="bp">▸ Browse Reports</a>
+      <a href="#services" class="bp">▸ View Services</a>
       <button class="bo" onclick="dlProfile()">↓ Download Profile</button>
     </div>
   </div>
   <div class="hr">
     <div class="plabel">Recent Publications</div>
     <div class="rpv" id="rpv"></div>
+    <div style="margin-top:20px;border:1px solid var(--ln);background:var(--ink3);padding:18px 20px">
+      <div style="font-family:var(--fm);font-size:8px;color:var(--em);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">Growth Impact Loop</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-family:var(--fm);font-size:10px;color:var(--t3)">Content educates users</span>
+          <span style="font-family:var(--fm);font-size:10px;color:var(--em)">→ Trust ↑</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-family:var(--fm);font-size:10px;color:var(--t3)">Trust brings community</span>
+          <span style="font-family:var(--fm);font-size:10px;color:var(--gold)">→ Users ↑</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-family:var(--fm);font-size:10px;color:var(--t3)">Community drives activity</span>
+          <span style="font-family:var(--fm);font-size:10px;color:var(--em)">→ Volume ↑</span>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="hbg">RESEARCH</div>
+  <div class="hbg">GROWTH</div>
 </section>
 
-<!-- REPORTS -->
+<section id="flywheel">
+  <div class="con">
+    <div class="fw-wrap">
+      <div class="fu">
+        <div class="sh" style="margin-bottom:36px">
+          <div class="sey gc">The Strategy</div>
+          <div class="sti">The Growth<br><b class="gc">Flywheel</b></div>
+        </div>
+        <p style="font-family:var(--fm);font-size:11px;color:var(--t2);line-height:1.9;border-left:2px solid var(--em);padding-left:18px;margin-bottom:24px">
+          Most exchanges compete on fees. I help exchanges compete on <strong style="color:var(--t)">value</strong> — which is a game far fewer are playing and far harder to copy.<br><br>
+          When an exchange consistently <strong style="color:var(--t)">gives more</strong> — real research, real education, real community — users stay, refer others, and trade more.
+        </p>
+        <div style="border:1px solid var(--ln);background:var(--ink2);padding:18px 20px">
+          <div style="font-family:var(--fm);font-size:8px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px">The Advantage</div>
+          <div style="font-family:var(--fm);font-size:11px;color:var(--t3);line-height:1.8">Fees can be copied overnight.<br><strong style="color:var(--t)">Community trust cannot.</strong></div>
+        </div>
+      </div>
+      <div class="fu">
+        <div class="fw-diagram">
+          <div class="fw-step">
+            <div class="fw-step-num">01</div>
+            <div class="fw-step-body">
+              <div class="fw-step-title"><span class="gc">Community Growth</span> Strategy</div>
+              <div class="fw-step-desc">X/Twitter, Telegram content, educational posts, market threads — giving value first builds audience fast</div>
+            </div>
+            <div class="fw-step-arr">↓</div>
+          </div>
+          <div class="fw-step">
+            <div class="fw-step-num">02</div>
+            <div class="fw-step-body">
+              <div class="fw-step-title">Users Attracted by <span class="go">Value</span></div>
+              <div class="fw-step-desc">Informed users are more confident traders — they trade more, explore more, stay longer on platform</div>
+            </div>
+            <div class="fw-step-arr">↓</div>
+          </div>
+          <div class="fw-step">
+            <div class="fw-step-num">03</div>
+            <div class="fw-step-body">
+              <div class="fw-step-title">Volume <span class="gc">&amp; Revenue</span> Grows</div>
+              <div class="fw-step-desc">More active, confident users = more trading volume. Community growth is directly tied to exchange revenue</div>
+            </div>
+            <div class="fw-step-arr">↓</div>
+          </div>
+          <div class="fw-step">
+            <div class="fw-step-num">04</div>
+            <div class="fw-step-body">
+              <div class="fw-step-title"><span class="go">Research</span> Reinforces Trust</div>
+              <div class="fw-step-desc">Institutional-grade reports retain serious traders and partners — the loop compounds over time</div>
+            </div>
+            <div class="fw-step-arr">↺</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="con">
+    <div class="sh fu">
+      <div class="sey">What I Offer</div>
+      <div class="sti">Dual-Role<br><b>Services</b></div>
+    </div>
+    <div class="svc-grid fu">
+      <div>
+        <div class="svc-col-head"><span class="growth">🚀 Community Growth</span></div>
+        <div class="svc-items">
+          <div class="svc-item"><div class="svc-icon">📣</div><div><div class="svc-name">Social Media Content Strategy</div><div class="svc-desc">X/Twitter &amp; Telegram content calendar — market threads, educational posts, alpha sharing. Built to grow followers and drive engagement that converts to sign-ups.</div><span class="svc-tag retainer">Retainer</span></div></div>
+          <div class="svc-item"><div class="svc-icon">🎓</div><div><div class="svc-name">Educational Content for Retail</div><div class="svc-desc">Simplified on-chain explainers, market primers, and tokenomics breakdowns. Complex data into content retail users actually understand and share.</div><span class="svc-tag demand">On-Demand</span></div></div>
+          <div class="svc-item"><div class="svc-icon">💬</div><div><div class="svc-name">Community Engagement & Moderation</div><div class="svc-desc">Telegram/Discord management, AMA support, market update threads. Keeping community active, informed, and engaged — building the habit of checking your platform first.</div><span class="svc-tag retainer">Retainer</span></div></div>
+          <div class="svc-item"><div class="svc-icon">📢</div><div><div class="svc-name">Marketing Copywriting & Campaigns</div><div class="svc-desc">Exchange promotions, listing announcements, product launch copy. From ad creatives to email campaigns — backed by ex-Marketing Specialist experience.</div><span class="svc-tag demand">On-Demand</span></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="svc-col-head"><span class="research">🔬 Research Support</span></div>
+        <div class="svc-items">
+          <div class="svc-item"><div class="svc-icon">📋</div><div><div class="svc-name">Project Listing Due Diligence</div><div class="svc-desc">Deep-dive token reports — tokenomics, team, VC backing, risk scoring. Gives your listing process credibility and protects the exchange from bad actors.</div><span class="svc-tag demand">On-Demand</span></div></div>
+          <div class="svc-item"><div class="svc-icon">📰</div><div><div class="svc-name">Weekly &amp; Monthly Market Reports</div><div class="svc-desc">Published reports your community can share — market digests, sector rotation, alpha signals. Research that doubles as high-value community content.</div><span class="svc-tag retainer">Retainer</span></div></div>
+          <div class="svc-item"><div class="svc-icon">📈</div><div><div class="svc-name">Quarterly &amp; Annual Publications</div><div class="svc-desc">Flagship institutional reports for investor decks, regulatory submissions, and board-level strategy. Signals the exchange operates at a professional tier.</div><span class="svc-tag collab">Collab</span></div></div>
+          <div class="svc-item"><div class="svc-icon">💻</div><div><div class="svc-name">On-Chain Data Pipelines</div><div class="svc-desc">Python + SQL automated data collection, Plotly dashboards, VC flow aggregation from 52+ tracked funds. The backend behind every report.</div><span class="svc-tag demand">On-Demand</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="reports">
   <div class="con">
     <div class="sh fu">
@@ -312,315 +448,232 @@ footer{padding:28px 48px;border-top:1px solid var(--ln);background:var(--ink);di
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills">
   <div class="con">
-    <div class="sh fu"><div class="sey">Capabilities</div><div class="sti">Core <b>Skill Stack</b></div></div>
-    <div class="skw"><div id="skL"></div><div id="skR"></div></div>
+    <div class="sh fu">
+      <div class="sey">Capabilities</div>
+      <div class="sti">Dual <b>Skill Stack</b></div>
+    </div>
+    <div class="skw">
+      <div class="fu" id="skL"></div>
+      <div class="fu" id="skR"></div>
+    </div>
   </div>
 </section>
 
-<!-- TOOLS -->
 <section id="tools">
   <div class="con">
-    <div class="sh fu"><div class="sey">Arsenal</div><div class="sti">Pro Data <b>Tools</b></div></div>
-    <div class="tgrid fu" id="tgrid"></div>
+    <div class="sh fu">
+      <div class="sey">Arsenal</div>
+      <div class="sti">Pro Data <b>&amp; Growth Tools</b></div>
+    </div>
+    <div class="tg2 fu" id="tg2"></div>
     <div class="fps fu" id="fps"></div>
   </div>
 </section>
 
-<!-- VALUE -->
 <section id="value">
   <div class="con">
-    <div class="sh fu"><div class="sey">Differentiation</div><div class="sti">Why <b>Choose Me</b></div></div>
+    <div class="sh fu">
+      <div class="sey">Differentiation</div>
+      <div class="sti">Why This <b>Works</b></div>
+    </div>
     <div class="vg fu" id="vg"></div>
   </div>
 </section>
 
-<!-- CTA -->
 <section id="cta">
   <div class="con">
-    <div class="ctat fu">Download My<br><em>Full Profile</em></div>
-    <p class="ctas fu">Complete research analyst profile — skills, tools, services &amp; report frameworks.<br>One PDF. Ready to share with any exchange or client.</p>
+    <div class="ctat fu">Ready to<br><em>Grow</em> Your <span class="gd">Exchange?</span></div>
+    <p class="ctas fu">Community growth that drives volume. Research that builds trust.<br>One specialist. Full-stack execution. Available now.</p>
     <div class="ctab fu">
-      <button class="bp" onclick="dlProfile()">↓ Download PDF Profile</button>
-      <button class="bo" onclick="window.print()">⎙ Print Page</button>
+      <button class="bp" onclick="dlProfile()">↓ Download Full Profile</button>
+      <a href="#services" class="bo">▸ View Services</a>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="fc">© 2026 <span>Research Intelligence</span> · Crypto Analyst Division</div>
-  <div class="fs2"><span class="od"></span>Available for Hire · Thariqrahmanfadilla</div>
+  <div class="fc">© 2025 <span>Research Intelligence</span> · Growth &amp; Analyst Division</div>
+  <div class="fs2"><span class="od"></span>Available for Exchange Partnership · 24/7</div>
 </footer>
 
-<!-- DRAWER -->
 <div class="dov" id="dov" onclick="closeDrawer()"></div>
 <div class="drw" id="drw">
   <div class="dh">
-    <div class="dhico" id="dico">📋</div>
+    <div class="dhicon" id="dico">📋</div>
     <div class="dhm">
       <div class="dhtype" id="dtp">Report Category</div>
-      <div class="dhtl" id="dtl">Report Library</div>
-      <div class="dhsb" id="dsb">Loading...</div>
+      <div class="dhtitle" id="dtl">Report Library</div>
+      <div class="dhsub" id="dsb">Loading...</div>
     </div>
     <button class="dclo" onclick="closeDrawer()">✕</button>
   </div>
-  <!-- Real files banner -->
-  <div class="real-files-banner" id="rfb" style="display:none">
-    <div class="rfb-dot"></div>
-    <span class="rfb-text">REAL FILES — Download PDF asli dari repository</span>
-    <span class="rfb-count" id="rfbCount"></span>
-  </div>
-  <!-- Real file rows injected here -->
-  <div id="realRows"></div>
-  <!-- Search toolbar -->
   <div class="dtb">
-    <input class="dts" id="dsearch" placeholder="Search reports..." oninput="filterR()">
+    <input class="dts" id="dsearch" placeholder="Search by title, ID, tags..." oninput="filterR()">
     <button class="dtf act" data-f="all" onclick="setF(this)">All</button>
-    <button class="dtf" data-f="New" onclick="setF(this)">New</button>
-    <button class="dtf" data-f="Featured" onclick="setF(this)">Featured</button>
-    <button class="dtf" data-f="Published" onclick="setF(this)">Published</button>
+    <button class="dtf" data-f="available" onclick="setF(this)">Available</button>
+    <button class="dtf" data-f="soon" onclick="setF(this)">Coming Soon</button>
   </div>
   <div class="db">
     <table class="rtbl">
       <thead class="rth"><tr>
-        <th style="width:70px">ID</th>
-        <th>Report Title</th>
-        <th style="width:90px">Date</th>
-        <th style="width:76px">Status</th>
-        <th style="width:78px">Action</th>
+        <th style="width:75px">ID</th><th>Report Title</th>
+        <th style="width:90px">Date</th><th style="width:80px">Status</th><th style="width:80px">Action</th>
       </tr></thead>
       <tbody class="rtbd" id="dtbl"></tbody>
     </table>
   </div>
   <div class="dfoot">
-    <div class="dfc">Showing <span id="dfc">0</span> reports</div>
-    <button class="dfda" id="dlAllBtn">↓ Download Profile PDF</button>
+    <div class="dfc"><span id="dfc-avail" class="avail">0</span> available &nbsp;·&nbsp; <span id="dfc-soon">0</span> coming soon</div>
+    <button class="dfda" id="dlAllBtn">↓ Download All PDFs</button>
   </div>
 </div>
 
 <script>
-/* ════════════════════════════
-   ★  KONFIGURASI FILE PDF  ★
-   Edit bagian ini saat kamu
-   tambah PDF baru ke GitHub
-════════════════════════════ */
-const REAL_FILES = {
-  listing: [
-    { title: 'Project Listing (HYPE)', file: 'reports/A. Project Listing/Project Listing (HYPE).pdf', date: '2024', tags: ['Due Diligence','Listing'] },
-    // Tambah PDF baru di sini, contoh:
-    // { title: 'Project Listing (ETH)', file: 'reports/A. Project Listing/Project Listing (ETH).pdf', date: '2024', tags: ['Due Diligence','Listing'] },
-  ],
-  performance: [
-    { title: 'Project Performance (HYPE)', file: 'reports/B. Project Performance/Project Performance (HYPE).pdf', date: '2024', tags: ['Performance','On-Chain'] },
-  ],
-  weekly: [
-    { title: 'Weekly Report', file: 'reports/C. Weekly Report/Weekly Report.pdf', date: '2024', tags: ['Weekly','Market Intel'] },
-  ],
-  monthly: [
-    { title: 'Monthly Report', file: 'reports/D. Monthly Report/Monthly_Report.pdf', date: '2024', tags: ['Monthly','Macro'] },
-  ],
-  quarterly: [
-    { title: 'Quarterly Report', file: 'reports/E. Quartarly Report/Quartarly Report.pdf', date: '2024', tags: ['Quarterly','Strategic'] },
-  ],
-  yearly: [
-    { title: 'Yearly Report', file: 'reports/F. Yearly Report/Yearly Report.pdf', date: '2024', tags: ['Annual','Cycle Analysis'] },
-  ],
-  random: [
-    { title: 'AI Bubble Research', file: 'reports/Random Work Report/AI Bubble Research.pdf', date: '2024', tags: ['Research','AI'] },
-    { title: 'Prediction Market Research', file: 'reports/Random Work Report/Prediction Market Research.pdf', date: '2024', tags: ['Research','Prediction'] },
-  ],
-};
-/* ══════════════════════════════════════ */
-
-const TKD=[
-  {s:'BTC',p:'$84,210',c:'+2.4%',u:1},{s:'ETH',p:'$3,184',c:'+1.8%',u:1},
-  {s:'SOL',p:'$182.4',c:'-0.6%',u:0},{s:'BNB',p:'$413',c:'+0.9%',u:1},
-  {s:'ARB',p:'$1.24',c:'-1.2%',u:0},{s:'AVAX',p:'$38.6',c:'+3.1%',u:1},
-  {s:'LINK',p:'$16.8',c:'+4.3%',u:1},{s:'OP',p:'$2.31',c:'+1.5%',u:1},
-  {s:'INJ',p:'$28.4',c:'+5.2%',u:1},{s:'SUI',p:'$1.84',c:'-0.9%',u:0},
-  {s:'TIA',p:'$12.6',c:'+2.1%',u:1},{s:'DOGE',p:'$0.142',c:'-0.8%',u:0},
+/* ═══════════════════════════════════════════════════════════
+   📁  KONFIGURASI REPORTS — EDIT DI SINI
+   
+   Cara tambah PDF:
+   1. Upload PDF ke folder yang sesuai di GitHub
+      Contoh: reports/A. Project Listing/ENA_Listing.pdf
+   2. Tambah entry di array reports:
+      { id:'PL-001', title:'Judul', filename:'namafile.pdf',
+        date:'Mar 2024', status:'New', tags:['tag1','tag2'] }
+   3. filename: null  →  tampil sebagai "Coming Soon"
+   4. Push ke GitHub → otomatis live
+═══════════════════════════════════════════════════════════ */
+const REPORTS_CONFIG=[
+  {id:'listing',icon:'📋',period:'On-Demand',title:'Project Listing Report',
+   desc:'Deep-dive fundamental analysis for new token listings — tokenomics, team, vesting, VC backing, and risk scoring.',
+   folder:'reports/A. Project Listing/',reports:[
+    // { id:'PL-001', title:'Ethena (ENA) — Project Listing Due Diligence', filename:'ENA_Listing.pdf', date:'Mar 2024', status:'New', tags:['RWA','Due Diligence'] },
+  ]},
+  {id:'performance',icon:'📊',period:'On-Demand',title:'Project Performance Report',
+   desc:'Post-listing performance tracking with price action, volume analysis, liquidity depth, and holder behavior.',
+   folder:'reports/B. Project Performance/',reports:[
+    // { id:'PP-001', title:'Bitcoin (BTC) — Performance & On-Chain Analysis', filename:'BTC_Performance.pdf', date:'Apr 2024', status:'Published', tags:['Layer 1','Performance'] },
+  ]},
+  {id:'weekly',icon:'📰',period:'Weekly',title:'Weekly Market Report',
+   desc:'7-day digest: macro catalysts, top movers, DeFi TVL shifts, and curated alpha. Doubles as community content.',
+   folder:'reports/C. Weekly Report/',reports:[
+    // { id:'WR-2024-001', title:'Week 1 — Market Intelligence Digest', filename:'WR_2024_W01.pdf', date:'Jan 7, 2024', status:'Published', tags:['Weekly','Market Intel'] },
+  ]},
+  {id:'monthly',icon:'📅',period:'Monthly',title:'Monthly Intelligence Report',
+   desc:'Comprehensive monthly overview: macro correlation, sector rotation, portfolio performance attribution.',
+   folder:'reports/D. Monthly Report/',reports:[
+    // { id:'MR-2024-01', title:'January 2024 — Monthly Intelligence & Market Report', filename:'MR_2024_January.pdf', date:'Jan 31, 2024', status:'Published', tags:['Monthly','Macro Analysis'] },
+  ]},
+  {id:'quarterly',icon:'📈',period:'Quarterly',title:'Quarterly Research Report',
+   desc:'90-day strategic review: VC deal flow, protocol revenues, institutional on-chain positioning shifts.',
+   folder:'reports/E. Quarterly Report/',reports:[
+    // { id:'QR-01', title:'Q1 2024 — Halving Cycle Positioning & ETF Inflows', filename:'QR_2024_Q1.pdf', date:'Q1 2024', status:'Published', tags:['Quarterly','Strategic Research'] },
+  ]},
+  {id:'yearly',icon:'🏆',period:'Annual',title:'Yearly Market Report',
+   desc:'Full-year state-of-market publication — investor decks, regulatory submissions, strategic planning.',
+   folder:'reports/F. Yearly Report/',reports:[
+    // { id:'YR-2024', title:'2024 Annual Report — Halving, ETF Approval & Institutional Adoption', filename:'YR_2024.pdf', date:'Dec 31, 2024', status:'New', tags:['Annual','Institutional'] },
+  ]},
+  {id:'random',icon:'📂',period:'Various',title:'Random Work Report',
+   desc:'Special projects, commissioned deep-dives, community content experiments, and one-off analyses.',
+   folder:'reports/Random Work Report/',reports:[
+    // { id:'RW-001', title:'Special Research — Custom Project Analysis', filename:'RW_001.pdf', date:'Mar 2024', status:'New', tags:['Special','Research'] },
+  ]},
 ];
 
-function ri(a,b){return Math.floor(Math.random()*(b-a)+a)}
-function rDate(y1,y2){
-  const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  return `${M[ri(0,12)]} ${ri(1,28)}, ${ri(y1,y2+1)}`;
-}
-
-const REPORT_TYPES=[
-  {id:'listing',icon:'📋',period:'On-Demand',title:'Project Listing Report',desc:'Deep-dive fundamental analysis — tokenomics, team, VC backing, and risk scoring for new token listings.',realKey:'listing',
-    extra:[
-      {id:'PL-002',title:'Starknet (STRK) — Project Listing Due Diligence',date:rDate(2023,2024),status:'Featured',tags:['L2 Infrastructure','Due Diligence']},
-      {id:'PL-003',title:'Manta Network (MANTA) — Listing Analysis',date:rDate(2023,2024),status:'Published',tags:['Privacy L2','Due Diligence']},
-      {id:'PL-004',title:'AltLayer (ALT) — Restaking Project Review',date:rDate(2023,2024),status:'Published',tags:['Restaking','Due Diligence']},
-      {id:'PL-005',title:'Ondo Finance (ONDO) — RWA Listing Report',date:rDate(2023,2024),status:'Published',tags:['RWA','Due Diligence']},
-      {id:'PL-006',title:'Ethena (ENA) — Synthetic USD Analysis',date:rDate(2023,2024),status:'Published',tags:['Synthetic Asset','Due Diligence']},
-    ]
-  },
-  {id:'performance',icon:'📊',period:'On-Demand',title:'Project Performance Report',desc:'Post-listing performance tracking — price action, volume, liquidity depth, and holder behavior analytics.',realKey:'performance',
-    extra:[
-      {id:'PP-002',title:'Ethereum (ETH) — Q1 2024 Performance Review',date:rDate(2023,2024),status:'Featured',tags:['Layer 1','Performance']},
-      {id:'PP-003',title:'Solana (SOL) — On-Chain Performance Analysis',date:rDate(2023,2024),status:'Published',tags:['Layer 1','Performance']},
-      {id:'PP-004',title:'Arbitrum (ARB) — L2 Performance Tracker',date:rDate(2023,2024),status:'Published',tags:['Layer 2','Performance']},
-      {id:'PP-005',title:'Uniswap (UNI) — DEX Performance Report',date:rDate(2023,2024),status:'Published',tags:['DEX','Performance']},
-    ]
-  },
-  {id:'weekly',icon:'📰',period:'Weekly',title:'Weekly Market Report',desc:'7-day market digest: macro catalysts, top movers, DeFi TVL shifts, and alpha signals from 24/7 monitoring.',realKey:'weekly',
-    extra:(()=>{
-      const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-      return Array.from({length:20},(_,i)=>({
-        id:`WR-2024-${String(i+2).padStart(3,'0')}`,
-        title:`Week ${i+2} — ${M[Math.floor((i+1)/4.3)]} Market Intelligence Digest`,
-        date:`${M[Math.floor((i+1)/4.3)]} ${((i%4)+1)*7-3}, 2024`,
-        status:i<2?'New':i<6?'Featured':'Published',
-        tags:['Weekly Digest','Market Intel']
-      }));
-    })()
-  },
-  {id:'monthly',icon:'📅',period:'Monthly',title:'Monthly Intelligence Report',desc:'Comprehensive monthly overview: macro correlation, sector rotation, and aggregated fund flow intelligence.',realKey:'monthly',
-    extra:['February','March','April','May','June','July','August','September','October','November','December']
-      .map((m,i)=>({id:`MR-2024-${String(i+2).padStart(2,'0')}`,title:`${m} 2024 — Monthly Intelligence Report`,date:`${m} 2024`,status:i>=9?'New':i>=7?'Featured':'Published',tags:['Monthly','Macro Analysis']}))
-  },
-  {id:'quarterly',icon:'📈',period:'Quarterly',title:'Quarterly Research Report',desc:'90-day strategic review: VC deal flow, protocol revenues, and institutional positioning shifts.',realKey:'quarterly',
-    extra:[
-      {id:'QR-01',title:'Q1 2023 — Bull Market Recovery Analysis',date:'Mar 31, 2023',status:'Published',tags:['Quarterly','Strategic']},
-      {id:'QR-02',title:'Q2 2023 — AI Narrative & Alt Season',date:'Jun 30, 2023',status:'Published',tags:['Quarterly','Strategic']},
-      {id:'QR-03',title:'Q3 2023 — Consolidation & Institutional Accumulation',date:'Sep 30, 2023',status:'Published',tags:['Quarterly','Strategic']},
-      {id:'QR-04',title:'Q4 2023 — BTC ETF Pre-Approval Momentum',date:'Dec 31, 2023',status:'Featured',tags:['Quarterly','Strategic']},
-      {id:'QR-05',title:'Q1 2024 — Halving Cycle & ETF Inflows',date:'Mar 31, 2024',status:'Featured',tags:['Quarterly','Strategic']},
-      {id:'QR-06',title:'Q2 2024 — ETH ETF Approval & Restaking Boom',date:'Jun 30, 2024',status:'New',tags:['Quarterly','Strategic']},
-    ]
-  },
-  {id:'yearly',icon:'🏆',period:'Annual',title:'Yearly Market Report',desc:'Full-year state-of-the-market publication — suitable for investor decks and strategic planning.',realKey:'yearly',
-    extra:[
-      {id:'YR-2022',title:'2022 Annual Report — Bear Market Deep Dive & Collapse Events',date:'Dec 31, 2022',status:'Published',tags:['Annual','Historical']},
-      {id:'YR-2023',title:'2023 Annual Report — Recovery, Narrative & Cycle Analysis',date:'Dec 31, 2023',status:'Featured',tags:['Annual','Cycle Analysis']},
-    ]
-  },
-  {id:'random',icon:'🔍',period:'Ad-Hoc',title:'Random Work Report',desc:'Ad-hoc research, thematic deep-dives, sector analysis, and special topic publications.',realKey:'random',
-    extra:[
-      {id:'RW-003',title:'DePIN Infrastructure — Sector Deep Dive',date:rDate(2023,2024),status:'Published',tags:['DePIN','Thematic']},
-      {id:'RW-004',title:'Restaking Ecosystem — Risk & Opportunity Analysis',date:rDate(2023,2024),status:'Published',tags:['Restaking','Thematic']},
-      {id:'RW-005',title:'RWA Tokenization — Institutional Adoption Study',date:rDate(2023,2024),status:'Featured',tags:['RWA','Thematic']},
-    ]
-  },
+const SKILLS_L=[
+  ['Community Growth Strategy',95],['Social Media Content (X/TG)',93],
+  ['Marketing Copywriting & Ads',91],['Educational Content Creation',88],['Engagement & Retention',86],
 ];
-
-const SKILLS_L=[['Python · Pandas & NumPy',95],['Plotly Visualization',92],['SQL / MySQL Databases',90],['On-Chain Analysis',94],['API Data Collection',88]];
-const SKILLS_R=[['Market Intelligence · 24/7',96],['Copywriting & Marketing Ads',91],['Accounting & Finance Degree',89],['Pixel Mapping & Data Extraction',83],['Institutional Flow Analysis',87]];
+const SKILLS_R=[
+  ['Market Intelligence · 24/7',96],['On-Chain Analysis (Glassnode/CQ)',94],
+  ['Python · Pandas & Plotly',92],['SQL / MySQL Databases',89],['Institutional Flow Analysis',87],
+];
 const TOOLS=[
-  {n:'Messari',t:'pro',d:'Token fundamentals, protocol revenue, governance activity & institutional-grade research reports.'},
-  {n:'Kaiko',t:'pro',d:'Professional order book data, market microstructure, trade surveillance & liquidity analytics.'},
-  {n:'Delphi Digital',t:'pro',d:'Top-tier macro crypto research, ecosystem mapping & thematic investment frameworks.'},
-  {n:'CryptoQuant',t:'pro',d:'Exchange on-chain flows, miner behavior, derivatives positioning & market health indicators.'},
+  {n:'Messari',t:'pro',d:'Token fundamentals, protocol revenue, governance & institutional-grade research for credible listings.'},
+  {n:'Kaiko',t:'pro',d:'Order book depth, liquidity analytics, microstructure & trade surveillance.'},
+  {n:'CryptoQuant',t:'pro',d:'Exchange on-chain flows, miner behavior, derivatives positioning & real-time market health.'},
   {n:'Glassnode',t:'pro',d:'NUPL, SOPR, MVRV, LTH/STH supply distribution & holder cohort behavior analytics.'},
-  {n:'X Platform',t:'com',d:'Real-time whale, VC & dev signal aggregation — 24/7 market sentiment monitoring.'},
-  {n:'VC Tracker',t:'com',d:'a16z, Multicoin, Paradigm, Binance Labs & 50+ fund flows aggregated in one view.'},
-  {n:'Python + SQL',t:'com',d:'Custom data pipelines: API collection, PlotDesigner pixel mapping & MySQL databases.'},
+  {n:'X / Telegram',t:'soc',d:'Market threads, community engagement, whale signal monitoring & growth content distribution.'},
+  {n:'Delphi Digital',t:'pro',d:'Top-tier macro crypto research, ecosystem mapping & thematic investment frameworks.'},
+  {n:'Python + SQL',t:'com',d:'Automated data pipelines, Plotly visualizations, VC flow aggregation from 52+ tracked funds.'},
+  {n:'VC Tracker',t:'com',d:'a16z, Multicoin, Paradigm, Binance Labs & 50+ fund flows — content & research gold.'},
 ];
-const FREE=['CoinGecko API','DefiLlama','Token Terminal','Nansen Community','Dune Analytics','Arkham Intelligence','TradingView','Lookonchain','The Block','Coinglass','AlternativeMe','CoinMarketCap'];
+const FREE=['CoinGecko API','DefiLlama','Token Terminal','Dune Analytics','Arkham Intelligence','TradingView','Lookonchain','The Block','Coinglass','Nansen Community','AlternativeMe','CoinMarketCap'];
 const VALUES=[
-  {i:'⚡',t:'Crypto Never Sleeps, Neither Do I',d:'24/7 market monitoring across news aggregators, X platform feeds, and on-chain alerts. Real-time intelligence delivered when it matters, not on a 9-to-5 schedule.',n:'01'},
-  {i:'🔬',t:'Institutional Tools, Not Retail Guesses',d:'Messari, Kaiko, Delphi Digital, CryptoQuant & Glassnode — the same toolkit used by top hedge funds. Every report grounded in premium, verified data.',n:'02'},
-  {i:'📡',t:'All Smart Money in One Chart',d:'Aggregate fund movements from a16z, Multicoin, Paradigm, Binance Labs & 50+ major VCs into unified Plotly visualizations — the full picture, not fragments.',n:'03'},
-  {i:'💻',t:'Code-Powered Research Pipeline',d:'Python (Pandas, NumPy, Plotly) + MySQL for automated data collection via APIs and pixel-mapped data extraction using PlotDesigner. I build the pipeline.',n:'04'},
-  {i:'📣',t:'Research That Sells',d:'Ex-Marketing Specialist in ads & copywriting + Accounting/Finance degree. Research that decision-makers actually read, act on, and share with their boards.',n:'05'},
-  {i:'🎯',t:'Exchange-Ready Deliverables',d:'Every report structured for crypto exchange workflows: listing due diligence, regulatory documentation, investor-facing performance decks & board-level publications.',n:'06'},
+  {i:'📣',t:'Growth First, Always',d:'Community growth is the revenue driver — research is the moat. I build the audience and the credibility simultaneously, so exchanges win on both fronts.',n:'01',tag:'g'},
+  {i:'⚡',t:'Crypto Never Sleeps — Neither Do I',d:'24/7 market monitoring. Real-time content when markets move. Research drops when news breaks. Time-sensitive signals delivered when they matter most.',n:'02',tag:'g'},
+  {i:'🔬',t:'Institutional Tools, Retail Reach',d:'I translate Messari, Kaiko, and Glassnode data into content retail users actually understand. Premium data → accessible education → community trust → volume.',n:'03',tag:'r'},
+  {i:'💻',t:'Code-Powered Research Pipeline',d:'Python (Pandas, Plotly) + MySQL for automated data collection and visualization. I build the intelligence pipeline, not just read someone else\'s output.',n:'04',tag:'r'},
+  {i:'📡',t:'Research as Community Content',d:'Weekly and monthly reports are not just internal documents — they are shareable content that drives organic reach. Research that builds audience at the same time.',n:'05',tag:'g'},
+  {i:'🎯',t:'Exchange-Ready, Revenue-Focused',d:'Every deliverable — from a listing report to a Telegram thread — is built to serve one goal: make the exchange more valuable to users and more profitable.',n:'06',tag:'r'},
 ];
 
-/* ── RENDER TICKER ── */
+/* INIT */
 (()=>{
-  let h='';[...TKD,...TKD].forEach(d=>{
-    h+=`<div class="ti"><span class="ti-s">${d.s}</span><span>${d.p}</span><span class="${d.u?'ti-u':'ti-d'}">${d.c}</span></div>`;
-  });
-  document.getElementById('tkr').innerHTML=h;
+  let t=0;
+  REPORTS_CONFIG.forEach(c=>c.reports.forEach(r=>{if(r.filename)t++;}));
+  document.getElementById('kpi-total').textContent=t>0?t+'+':'24H';
+  document.getElementById('kpi-cat').textContent=REPORTS_CONFIG.length;
 })();
 
-/* ── TOTAL COUNT ── */
+/* HERO PREVIEWS */
 (()=>{
-  let total=0;
-  Object.values(REAL_FILES).forEach(arr=>total+=arr.length);
-  REPORT_TYPES.forEach(rt=>total+=rt.extra.length);
-  document.getElementById('totalCount').textContent=total+'+';
+  const all=[];
+  REPORTS_CONFIG.forEach(c=>c.reports.forEach(r=>{
+    if(r.filename)all.push({...r,catIcon:c.icon,catId:c.id,period:c.period,folder:c.folder});
+  }));
+  const prev=all.slice(-5).reverse();
+  if(!prev.length){
+    document.getElementById('rpv').innerHTML=`<div style="padding:24px 16px;font-family:var(--fm);font-size:10px;color:var(--t3);text-align:center;line-height:1.8">Add your PDFs to the config<br>to show previews here.</div>`;
+    return;
+  }
+  const bc=['bn','bp2','bl','bn','bp2'];
+  document.getElementById('rpv').innerHTML=prev.map((r,i)=>`
+    <div class="rpr" onclick="openDrawerById('${r.catId}')">
+      <div class="ri">${r.catIcon}</div>
+      <div class="rinfo"><div class="rn">${r.title}</div><div class="rm">${r.period} · ${r.date}</div></div>
+      <div class="rbadge ${bc[i%5]}">${r.status}</div>
+    </div>`).join('');
 })();
 
-/* ── HERO RIGHT ── */
-(()=>{
-  const items=[
-    {icon:'📋',type:'LISTING',name:'Project Listing (HYPE)',date:'2024',bc:'bg',bt:'Live File'},
-    {icon:'📊',type:'PERFORMANCE',name:'Project Performance (HYPE)',date:'2024',bc:'bp2',bt:'Live File'},
-    {icon:'📰',type:'WEEKLY',name:'Weekly Report',date:'2024',bc:'bl',bt:'Live File'},
-    {icon:'📅',type:'MONTHLY',name:'Monthly Report',date:'2024',bc:'bp2',bt:'Live File'},
-    {icon:'🔍',type:'RANDOM',name:'AI Bubble Research',date:'2024',bc:'bg',bt:'Live File'},
-    {icon:'🔍',type:'RANDOM',name:'Prediction Market Research',date:'2024',bc:'bg',bt:'Live File'},
-  ];
-  document.getElementById('rpv').innerHTML=items.map(r=>`
-    <div class="rpr">
-      <div class="ri2">${r.icon}</div>
-      <div class="rinfo">
-        <div class="rn">${r.name}</div>
-        <div class="rm">${r.type} · ${r.date}</div>
-      </div>
-      <div class="rbadge ${r.bc}">${r.bt}</div>
-      <button class="rdb">↓ PDF</button>
-    </div>
-  `).join('');
-})();
-
-/* ── REPORT GRID ── */
-document.getElementById('rtg').innerHTML=REPORT_TYPES.map((rt,i)=>{
-  const realCount=REAL_FILES[rt.realKey]?.length||0;
-  const totalCount=realCount+rt.extra.length;
-  return `
-    <div class="rtc fu" onclick="openDrawer(${i})">
-      ${realCount>0?`<div class="card-live">${realCount} Live</div>`:''}
-      <div class="rtn">${String(i+1).padStart(2,'0')}</div>
-      <span class="rticon">${rt.icon}</span>
-      <div class="rtp">${rt.period}</div>
-      <div class="rttl">${rt.title}</div>
-      <div class="rtd">${rt.desc}</div>
-      <div class="rtcnt"><span class="rnum">${totalCount}</span> Reports</div>
-      <div class="rtar">→</div>
-    </div>
-  `;
+/* REPORT GRID */
+document.getElementById('rtg').innerHTML=REPORTS_CONFIG.map((rt,i)=>{
+  const av=rt.reports.filter(r=>r.filename).length,tot=rt.reports.length;
+  const cnt=tot===0?`<span class="soon">No reports yet</span>`
+    :`<span class="avail">${av}</span> available &nbsp;·&nbsp; <span class="soon">${tot-av} soon</span>`;
+  return `<div class="rtc fu" onclick="openDrawer(${i})">
+    <div class="rtn">${String(i+1).padStart(2,'0')}</div>
+    <span class="rticon">${rt.icon}</span>
+    <div class="rtp">${rt.period}</div>
+    <div class="rttl">${rt.title}</div>
+    <div class="rtd">${rt.desc}</div>
+    <div class="rtcnt">${cnt}</div>
+    <div class="rtar">→</div>
+  </div>`;
 }).join('');
 
-/* ── SKILLS ── */
-(['skL','skR']).forEach((id,si)=>{
-  const arr=si===0?SKILLS_L:SKILLS_R;
-  document.getElementById(id).innerHTML=arr.map(([n,p])=>`
-    <div class="ski fu">
-      <div class="skr"><span>${n}</span><span class="skp">${p}%</span></div>
-      <div class="skt"><div class="skb" data-w="${p}%"></div></div>
-    </div>
-  `).join('');
-});
+/* SKILLS */
+document.getElementById('skL').innerHTML=`<div class="sk-col-label growth">🚀 Community Growth</div>`
+  +SKILLS_L.map(([n,p])=>`<div class="ski"><div class="skr"><span>${n}</span><span class="skp gc">${p}%</span></div><div class="skt"><div class="skb g" data-w="${p}%"></div></div></div>`).join('');
+document.getElementById('skR').innerHTML=`<div class="sk-col-label research">🔬 Research & Data</div>`
+  +SKILLS_R.map(([n,p])=>`<div class="ski"><div class="skr"><span>${n}</span><span class="skp">${p}%</span></div><div class="skt"><div class="skb r" data-w="${p}%"></div></div></div>`).join('');
 
-/* ── TOOLS ── */
-document.getElementById('tgrid').innerHTML=TOOLS.map(t=>`
-  <div class="tc fu">
-    <div class="tct ${t.t}">${t.t==='pro'?'Pro License':'Community'}</div>
-    <div class="tcn">${t.n}</div>
-    <div class="tcd">${t.d}</div>
-  </div>
-`).join('');
+/* TOOLS */
+document.getElementById('tg2').innerHTML=TOOLS.map(t=>`
+  <div class="tc fu"><div class="tct ${t.t}">${t.t==='pro'?'Pro License':t.t==='soc'?'Social':'Community'}</div>
+  <div class="tcn">${t.n}</div><div class="tcd">${t.d}</div></div>`).join('');
 document.getElementById('fps').innerHTML=FREE.map(t=>`<div class="fp">${t}</div>`).join('');
 
-/* ── VALUE ── */
+/* VALUE */
 document.getElementById('vg').innerHTML=VALUES.map(v=>`
-  <div class="vc fu">
-    <div class="vcbg">${v.n}</div>
-    <div class="vci">${v.i}</div>
-    <div class="vct">${v.t}</div>
-    <div class="vcd">${v.d}</div>
-  </div>
-`).join('');
+  <div class="vc fu"><div class="vcbg">${v.n}</div><div class="vci">${v.i}</div>
+  <div class="vct">${v.t}</div><div class="vcd">${v.d}</div>
+  <span class="vc-tag ${v.tag}">${v.tag==='g'?'Community Growth':'Research'}</span></div>`).join('');
 
-/* ── OBSERVER ── */
-const io=new IntersectionObserver(es=>{
-  es.forEach(e=>{
+/* OBSERVER */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
     if(e.isIntersecting){
       e.target.classList.add('in');
       e.target.querySelectorAll('.skb').forEach(b=>{b.style.width=b.dataset.w});
@@ -629,125 +682,145 @@ const io=new IntersectionObserver(es=>{
 },{threshold:.1});
 document.querySelectorAll('.fu').forEach(el=>io.observe(el));
 
-/* ══════════════════════
-   DRAWER SYSTEM
-══════════════════════ */
-let curType=null,curFilter='all',allExtra=[];
-
+/* DRAWER */
+let curType=null,curFilter='all',allReps=[];
+function openDrawerById(id){openDrawer(REPORTS_CONFIG.findIndex(r=>r.id===id));}
 function openDrawer(idx){
-  const rt=REPORT_TYPES[idx];
-  curType=rt; curFilter='all';
-  allExtra=[...rt.extra];
-
+  const rt=REPORTS_CONFIG[idx];
+  curType=rt;allReps=[...rt.reports];curFilter='all';
   document.getElementById('dico').textContent=rt.icon;
   document.getElementById('dtp').textContent=rt.period+' Report';
   document.getElementById('dtl').textContent=rt.title;
+  const av=rt.reports.filter(r=>r.filename).length;
+  document.getElementById('dsb').textContent=rt.reports.length===0
+    ?'Belum ada laporan — tambahkan PDF ke konfigurasi'
+    :`${av} tersedia · ${rt.reports.length-av} coming soon`;
   document.getElementById('dsearch').value='';
-
-  // Real files section
-  const realFiles=REAL_FILES[rt.realKey]||[];
-  const rfb=document.getElementById('rfb');
-  const rr=document.getElementById('realRows');
-
-  if(realFiles.length>0){
-    rfb.style.display='flex';
-    document.getElementById('rfbCount').textContent=`${realFiles.length} file tersedia`;
-    rr.innerHTML=realFiles.map(f=>`
-      <div class="real-row" onclick="openRealFile('${encodeURIComponent(f.file)}')">
-        <div class="rr-icon">${rt.icon}</div>
-        <div class="rr-info">
-          <div class="rr-title">${f.title}</div>
-          <div class="rr-meta">
-            <span>${f.tags.join(' · ')}</span>
-            <span>${f.date}</span>
-          </div>
-        </div>
-        <div class="rr-badge">● LIVE FILE</div>
-        <button class="rr-dl" onclick="event.stopPropagation();openRealFile('${encodeURIComponent(f.file)}')">
-          ↓ Download
-        </button>
-      </div>
-    `).join('');
-  } else {
-    rfb.style.display='none';
-    rr.innerHTML='';
-  }
-
-  const totalCount=realFiles.length+rt.extra.length;
-  document.getElementById('dsb').textContent=`${totalCount} reports — ${realFiles.length} live file, ${rt.extra.length} sample`;
-
   document.querySelectorAll('.dtf').forEach(b=>b.classList.remove('act'));
   document.querySelector('[data-f="all"]').classList.add('act');
-  document.getElementById('dlAllBtn').textContent=`↓ Download Profile PDF`;
-
-  renderTbl(rt.extra);
+  renderTbl(rt.reports);
+  const btn=document.getElementById('dlAllBtn');
+  const avr=rt.reports.filter(r=>r.filename);
+  btn.textContent=avr.length>0?`↓ Buka Semua (${avr.length}) PDF`:'— Belum Ada PDF';
+  btn.disabled=avr.length===0;
   document.getElementById('dov').classList.add('open');
   document.getElementById('drw').classList.add('open');
   document.body.style.overflow='hidden';
 }
-
-function openRealFile(encodedPath){
-  const path=decodeURIComponent(encodedPath);
-  window.open(path,'_blank');
-}
-
 function closeDrawer(){
   document.getElementById('dov').classList.remove('open');
   document.getElementById('drw').classList.remove('open');
   document.body.style.overflow='';
 }
-
 function renderTbl(reps){
-  const sc={New:'sbn',Featured:'sbf',Published:'sbp'};
-  if(reps.length===0){
-    document.getElementById('dtbl').innerHTML=`<tr><td colspan="5" style="text-align:center;padding:40px;font-family:var(--fm);font-size:11px;color:var(--t3)">Tidak ada sample report di kategori ini — upload PDF lebih banyak ke GitHub</td></tr>`;
-    document.getElementById('dfc').textContent='0';
-    return;
-  }
-  document.getElementById('dtbl').innerHTML=reps.map(r=>`
-    <tr class="cs-row">
-      <td><span class="tid">${r.id}</span></td>
-      <td>
-        <div class="tttl">${r.title}</div>
-        <div class="ttags">${r.tags.map(t=>`<span class="tg tgs">${t}</span>`).join('')}</div>
-      </td>
-      <td><span class="tdt">${r.date}</span></td>
-      <td><span class="sb ${sc[r.status]||'sbp'}">${r.status}</span></td>
-      <td><span class="cs-lbl">Coming Soon</span></td>
-    </tr>
-  `).join('');
-  document.getElementById('dfc').textContent=reps.length;
+  const sc={New:'sbn',Featured:'sbf',Published:'sbp',Soon:'sbs'};
+  document.getElementById('dtbl').innerHTML=reps.length===0
+    ?`<tr><td colspan="5" style="text-align:center;padding:40px;font-family:var(--fm);font-size:11px;color:var(--t3)">
+        Tidak ada laporan.<br><br><span style="font-size:10px">Edit REPORTS_CONFIG di index.html untuk menambahkan PDF</span>
+       </td></tr>`
+    :reps.map(r=>{
+        const has=!!r.filename;
+        const dl=has
+          ?`<a class="tdl" href="${encodeURI(curType.folder+r.filename)}" target="_blank" download="${r.filename}" onclick="event.stopPropagation()">↓ PDF</a>`
+          :`<span class="tdl disabled">— Soon</span>`;
+        return `<tr class="${has?'has-file':'no-file'}" ${has?`onclick="openPDF('${encodeURI(curType.folder+r.filename)}')"`:''}>
+          <td><span class="tid">${r.id}</span></td>
+          <td><div class="tttl">${r.title}</div><div class="ttags">${(r.tags||[]).map(t=>`<span class="tg tgs">${t}</span>`).join('')}</div></td>
+          <td><span class="tdt">${r.date}</span></td>
+          <td><span class="sb ${sc[r.status]||'sbp'}">${r.status}</span></td>
+          <td>${dl}</td>
+        </tr>`;
+      }).join('');
+  const av=reps.filter(r=>r.filename).length;
+  document.getElementById('dfc-avail').textContent=av;
+  document.getElementById('dfc-soon').textContent=reps.length-av;
 }
-
+function openPDF(p){window.open(p,'_blank');}
 function filterR(){
   const q=document.getElementById('dsearch').value.toLowerCase();
-  let f=[...allExtra];
-  if(curFilter!=='all') f=f.filter(r=>r.status===curFilter);
-  if(q) f=f.filter(r=>r.title.toLowerCase().includes(q)||r.id.toLowerCase().includes(q));
+  let f=[...allReps];
+  if(curFilter==='available')f=f.filter(r=>r.filename);
+  else if(curFilter==='soon')f=f.filter(r=>!r.filename);
+  if(q)f=f.filter(r=>r.title.toLowerCase().includes(q)||r.id.toLowerCase().includes(q)||(r.tags||[]).join(' ').toLowerCase().includes(q));
   renderTbl(f);
 }
-
 function setF(btn){
   curFilter=btn.dataset.f;
   document.querySelectorAll('.dtf').forEach(b=>b.classList.remove('act'));
-  btn.classList.add('act');
-  filterR();
+  btn.classList.add('act');filterR();
 }
+document.getElementById('dlAllBtn').onclick=function(){
+  if(!curType)return;
+  curType.reports.filter(r=>r.filename).forEach((r,i)=>{
+    setTimeout(()=>{
+      const a=document.createElement('a');
+      a.href=encodeURI(curType.folder+r.filename);
+      a.download=r.filename;a.target='_blank';
+      document.body.appendChild(a);a.click();document.body.removeChild(a);
+    },i*400);
+  });
+};
 
-document.getElementById('dlAllBtn').onclick=function(){dlProfile()};
-
-/* ══════════════════════
-   PROFILE PDF — opens real file
-══════════════════════ */
+/* PROFILE PDF */
 function dlProfile(){
-  // Opens the real CV & How I Work PDF from GitHub
-  const a = document.createElement('a');
-  a.href = 'CV_and_How_i_Work.pdf';
-  a.download = 'ThariqRahmanFadillah_CV_and_How_I_Work.pdf';
-  a.target = '_blank';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  const {jsPDF}=window.jspdf;
+  const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+  const W=210,H=297,M=22;
+  doc.setFillColor(4,6,13);doc.rect(0,0,W,H,'F');
+  doc.setFillColor(0,200,150);doc.rect(0,0,W,3,'F');
+  doc.setFillColor(0,200,150);doc.rect(0,0,3,H,'F');
+  doc.setFillColor(8,12,24);doc.rect(0,3,W,60,'F');
+  doc.setDrawColor(26,32,56);doc.setLineWidth(.4);doc.line(0,63,W,63);
+  doc.setFont('helvetica','bold');doc.setFontSize(9);doc.setTextColor(0,200,150);
+  doc.text('COMMUNITY GROWTH  ·  RESEARCH ANALYST  ·  DUAL SPECIALIST',M+2,13);
+  doc.setFontSize(28);doc.setTextColor(0,200,150);doc.text('GIVE MORE,',M+2,25);
+  doc.setTextColor(201,168,76);doc.text('GROW VOLUME.',M+2,39);
+  doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(138,148,176);
+  doc.text('Research Intelligence Division  ·  Exchange Growth & Analyst Partnership',M+2,50);
+  doc.setFillColor(0,200,150);doc.circle(M+2,57,2.5,'F');
+  doc.setFontSize(8.5);doc.setTextColor(0,200,150);
+  doc.text('Available for Hire · Community Growth that Drives Volume · 24/7',M+8,58.5);
+  let y=74;
+  const addSec=(title,col,items)=>{
+    if(y>H-40){doc.addPage();doc.setFillColor(4,6,13);doc.rect(0,0,W,H,'F');y=20;}
+    const rgb=col==='g'?[0,200,150]:[201,168,76];
+    doc.setFillColor(...rgb);doc.rect(M,y,3,5,'F');
+    doc.setFont('helvetica','bold');doc.setFontSize(11);doc.setTextColor(...rgb);
+    doc.text(title,M+7,y+4);
+    doc.setDrawColor(26,32,56);doc.line(M+7,y+7,W-M,y+7);
+    y+=14;
+    items.forEach(item=>{
+      if(y>H-20){doc.addPage();doc.setFillColor(4,6,13);doc.rect(0,0,W,H,'F');y=20;}
+      doc.setFillColor(11,15,26);doc.setDrawColor(20,26,40);
+      doc.roundedRect(M+2,y-3,W-M*2-4,10,1,1,'FD');
+      doc.setTextColor(...rgb);doc.setFont('helvetica','bold');doc.setFontSize(8.5);doc.text('▸',M+6,y+3.5);
+      doc.setTextColor(170,178,200);doc.setFont('helvetica','normal');doc.text(item,M+13,y+3.5);
+      y+=12;
+    });y+=8;
+  };
+  addSec('COMMUNITY GROWTH SERVICES','g',[
+    'Social Media Content Strategy — X/Twitter & Telegram content calendar & growth campaigns',
+    'Educational Content for Retail — Simplified on-chain explainers, primers & tokenomics breakdowns',
+    'Community Engagement & Moderation — Telegram/Discord management, AMA support, update threads',
+    'Marketing Copywriting & Campaigns — Exchange promotions, listing announcements, ad creatives',
+  ]);
+  addSec('RESEARCH SUPPORT SERVICES','r',[
+    'Project Listing Report — Tokenomics, team verification, VC analysis & 47-parameter risk scoring',
+    'Project Performance Report — Post-listing analytics, liquidity & on-chain holder behavior',
+    'Weekly & Monthly Market Reports — Market digests that double as shareable community content',
+    'Quarterly & Annual Publications — Flagship institutional reports for boards & investor decks',
+    'On-Chain Data Pipelines — Python + SQL automation, Plotly dashboards & VC flow aggregation',
+  ]);
+  addSec('CORE THESIS','g',[
+    'Exchanges that give more attract more users and generate more volume',
+    'Community growth is the revenue driver — research is the credibility moat',
+    'Fees can be copied overnight. Community trust cannot.',
+    'One specialist. Full-stack execution. Available now.',
+  ]);
+  doc.setFillColor(0,200,150);doc.rect(0,H-4,W,4,'F');
+  doc.setFont('helvetica','bold');doc.setFontSize(8);doc.setTextColor(100,110,140);
+  doc.text('Research Intelligence · Growth & Analyst Division · Give More → Grow Volume',W/2,H-7,{align:'center'});
+  doc.save('ResearchIntelligence_GrowthAnalystProfile.pdf');
 }
 </script>
 </body>
